@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mandatory Form</title>
+    <link rel="shortcut icon" href="./assets/img/bnr-fav.png" type="image/x-icon">
+
+    <!-- Style Files -->
+    <link rel="stylesheet" href="./assets/bootstrap-5.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/gijgo.min.css">
+    <link rel="stylesheet" href="./assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./assets/css/intlTelInput.min.css">
+    <link rel="stylesheet" href="./assets/css/custom.css">
+    <!-- Style Files -->
+</head>
+<body>
+
+    <!-- Header Section -->
+    <nav class="navbar navbar-light">
+        <div class="container-fluid sec-space">
+          <a class="navbar-brand"><img src="./assets/img/bnr-logo.png" alt=""></a>
+          <form class="d-flex menus">
+            <a href="">Home</a>
+            <a href="">About Us</a>
+          </form>
+        </div>
+    </nav>
+    <!-- Header Section -->
+
+    <!-- Main Container -->
+    <div class="main-container bg-img">
+        <div class="row ml_50 mr_0">
+            <div class="col-lg-3 p-0">
+               <div class="mt_50 bg-content">
+                <h3>And the two shall become one flesh. So they are no longer two but one flesh. - Mark 10:8</h3>
+               </div> 
+            </div>
+            <div class="col-lg-9 form-container">
+                <div class="container-space">
+                    <div class="title mt_50 mb_40">
+                        <h1>STEP 1 of Create Account </h1>
+                    </div>
+
+                    <!-- Form -->
+                    <form id="mandatoryForm" class="form-section">
+                        <div class="col-12 col-lg-5 col-md-5 col-sm-12">
+                            <div class="form-field  mb-4">
+                                <label for="profileFor">Profile Created for :</label>
+                                <select class="form-select">
+                                    <option selected>Select profile created for</option>
+                                    <option value="myself">Myself</option>
+                                    <option value="son">Son</option>
+                                    <option value="doughter">Daughter</option>
+                                    <option value="sister">Sister</option>
+                                    <option value="brother">Brother</option>
+                                    <option value="relative">Relative</option>
+                                    <option value="friend">Friend</option>
+                                  </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-5 col-md-5 col-sm-12">
+                            <div class="form-field mb-4">
+                                <label for="profileFor">Select Gender :</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault1" checked>
+                                    <label class="form-check-label" for="flexRadioDefault1">Male</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault2">
+                                    <label class="form-check-label" for="flexRadioDefault2">Female</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-5 col-md-5 col-sm-12">
+                            <div class="form-field mb-4">
+                                <label for="firstName">First Name :</label>
+                                <input type="text" name="firstName" id="firstName" class="" placeholder="Enter first name">
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-5 col-md-5 col-sm-12">
+                            <div class="form-field mb-4">
+                                <label for="lastName">Last Nmae :</label>
+                                <input type="text" name="lastName" id="lastName" class="" placeholder="Enter last name">
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-5 col-md-5 col-sm-12">
+                            <div class="form-field mb-4">
+                                <label for="dob">Select Date of Birth :</label>
+                                <input type="text" name="dob" id="dob" class="" placeholder="Enter DOB">
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-5 col-md-5 col-sm-12">
+                            <div class="form-field  mb-4">
+                                <label for="residingInCountry">Currently Residing In Country :</label>
+                                <select id="residingInCountry" class="form-select">
+                                    <option selected>Select Country</option>
+                                    <option value="myself">Myself</option>
+                                    <option value="son">Son</option>
+                                    <option value="doughter">Daughter</option>
+                                    <option value="sister">Sister</option>
+                                    <option value="brother">Brother</option>
+                                    <option value="relative">Relative</option>
+                                    <option value="friend">Friend</option>
+                                  </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-5 col-md-5 col-sm-12">
+                            <div class="form-field  mb-4">
+                                <label for="residingInState">Currently Residing In State :</label>
+                                <select id="residingInState" class="form-select">
+                                    <option selected>Select State</option>
+                                    <option value="myself">Myself</option>
+                                    <option value="son">Son</option>
+                                    <option value="doughter">Daughter</option>
+                                    <option value="sister">Sister</option>
+                                    <option value="brother">Brother</option>
+                                    <option value="relative">Relative</option>
+                                    <option value="friend">Friend</option>
+                                  </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-5 col-md-5 col-sm-12">
+                            <div class="form-field mb-4">
+                                <label for="email">Email ID :</label>
+                                <input type="text" name="email" id="email" class="" placeholder="Enter email">
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-5 col-md-5 col-sm-12">
+                            <div class="form-field mb-4">
+                                <label for="primaryMobNum">Primary Mobile Number :</label>
+                                <input type="tel" name="primaryMobNum" id="primaryMobNum" class="" placeholder="Enter Mobile Number">
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-5 col-md-5 col-sm-12">
+                            <div class="form-field mb-4">
+                                <label for="number">Whatsapp Number below is :</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="mobileNum" id="flexRadioDefault3">
+                                    <label class="form-check-label" for="flexRadioDefault3">Same as above</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="mobileNum" id="flexRadioDefault4" checked>
+                                    <label class="form-check-label" for="flexRadioDefault4">Different than above</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-5 col-md-5 col-sm-12">
+                            <div class="form-field mb-4">
+                                <div class="g-recaptcha" data-sitekey="6Lel4Z4UAAAAAOa8LO1Q9mqKRUiMYl_00o5mXJrR"></div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-5 col-md-5 col-sm-12">
+                            <div  class="form-field mb-4">
+                                <label for="whatsappNum">Whatsapp Number :</label>
+                                <input type="tel" name="whatsappNum" id="whatsappNum" class="" placeholder="Enter whatsapp Number">
+                            </div>
+                        </div>
+                        <div class="col-12 text-center  mt_30 mb_40">
+                            <button type="submit" class="submit_btn">Submit & Continue</button>
+                        </div>
+                    </form>
+                    <!-- Form -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Container -->
+
+
+
+
+    <!-- plugin Files -->
+    <script src="./assets/js/intlTelInput.min.js"></script>
+    <script src="./assets/bootstrap-5.0.2/js/bootstrap.min.js"></script>
+    <script src="./assets/js/jquery-3.7.1.min.js"></script>
+    <script src="./assets/js/custom.js"></script>
+    <script src="./assets/js/gijgo.min.js"></script>
+    <script src="./assets/js/recaptcha.api.js" async defer></script>
+    <!-- plugin Files -->
+
+    <!--  -->
+    <script>
+        $('#dob').datepicker({
+            uiLibrary: 'bootstrap5'
+        });
+
+        var onloadCallback = function() {
+            alert("grecaptcha is ready!");
+        };
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+        // Initialize intlTelInput after the document is loaded
+        const primaryNum = document.querySelector("#primaryMobNum");
+        const primaryNumItt = window.intlTelInput(primaryNum, {
+            initialCountry: "in",
+            separateDialCode: true,
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@21.2.6/build/js/utils.min.js"
+        });
+    // Get the selected country data
+
+    // Initialize intlTelInput after the document is loaded
+    const whatsappNum = document.querySelector("#whatsappNum");
+        const whatsappNumIti = window.intlTelInput(whatsappNum, {
+            initialCountry: "in",
+            separateDialCode: true,
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@21.2.6/build/js/utils.min.js"
+        });
+    // Get the selected country dat
+    /* const countryData = iti.getSelectedCountryData(); */
+});
+
+    </script>
+    <!--  -->
+    
+</body>
+</html>

@@ -1,0 +1,227 @@
+@font-face {
+    font-family: 'NotoSans-Bold';
+    src: url('../fonts/NotoSans-Bold.ttf');
+}
+@font-face {
+    font-family: 'NotoSans-Regular';
+    src: url('../fonts/NotoSans-Regular.ttf');
+}
+@font-face {
+    font-family: 'NotoSans-SemiBold';
+    src: url('../fonts/NotoSans-SemiBold.ttf');
+}
+@font-face {
+    font-family: 'Cinzel-Bold';
+    src: url('../fonts/Cinzel-Bold.ttf');
+}
+@font-face {
+    font-family: 'Cinzel-Regular';
+    src: url('../fonts/Cinzel-Regular.ttf');
+}
+@font-face {
+    font-family: 'Cinzel-SemiBold';
+    src: url('../fonts/Cinzel-SemiBold.ttf');
+}
+.mr_0{
+    margin-right: 0;
+}
+.ml_50{
+    margin-left: 50px;
+}
+.mt_30{
+    margin-top: 30px;
+}
+.mt_50{
+    margin-top: 50px;
+}
+.mb_40{
+    margin-bottom: 40px;
+}
+.mt_100{
+    margin-top: 100px;
+}
+.w_100{
+    width: 100%;
+}
+
+.sec-space{
+    margin-right: 50px;
+    margin-left: 50px;
+}
+.menus a{
+    font-family: 'NotoSans-Regular';
+    font-size: 16px;
+    color: #DC75B0;
+    text-decoration: none;
+    margin-left:20px;
+}
+.menus a:hover{
+    font-weight: 600;
+}
+/* ====================== User Flow Code =================== */
+.bg-img{
+    height: 100%;
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-image: url('../img/form-bg-img.jpg');
+}
+.bg-content h3{
+    font-family: 'Cinzel-Regular';
+    font-weight: 400;
+}
+
+/* Form Container */
+.form-container{
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 50px;
+    background-color: #FFFFFF;
+}
+.container-space{
+    margin: 0 50px;
+}
+.title h1{
+    font-size: 32px;
+    font-weight: bold;
+    color: #000;
+    text-align: center;
+    font-family: 'Cinzel-Regular';
+  
+}
+.form-section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.form-field{
+    color: #666666;
+}
+.form-field label{
+    width: 100%;
+    margin: 12px 0;
+    color: #666666;
+    font-size: 16px;
+    text-transform:capitalize;
+    font-family: 'NotoSans-SemiBold';
+}
+.form-field input{
+    color: #666666;
+    outline: #DC75B0;
+    border-radius: 8px;
+    border:2px solid #DC75B0;
+    display: block;
+    width: 100%;
+    padding: .375rem 2.25rem .375rem .75rem;
+    -moz-padding-start: calc(0.75rem - 3px);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    background-image: none;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.form-select{
+    color: #7D7A7A;
+    outline: #DC75B0;
+    cursor: pointer;
+    border-radius: 8px;
+    border:2px solid #DC75B0;
+    background-image: url('../img/dropdown-arrow.svg');
+}
+.form-select option{
+    padding: 20px 0;
+    cursor: pointer;
+    background:#FFF!important;
+}
+.form-select option:hover{
+    background:#DC75B0!important;
+}
+.form-select:focus{
+    border: 2px solid #DC75B0;
+    box-shadow: none;
+}
+.form-check label{
+    margin: 0;
+    color: #7D7A7A;
+    cursor: pointer;
+    font-family: 'NotoSans-Regular';
+}
+.form-check input{
+    width: 16px!important;
+    padding:0;
+    cursor: pointer;
+    border:1px solid #CCCCCC;
+}
+
+.form-check-input:checked[type=radio]{
+    background-color: #FFF;
+    border-color: #DC75B0;
+    background-image: url('../img/radion_btn_dot.svg');
+}
+.form-check-input:active{
+    border-color: #DC75B0!important;
+    box-shadow: 0 0 0 0.25rem #dc75b04f!important;
+}
+.form-check-input:focus{
+    border-color: #DC75B0!important;
+    box-shadow: 0 0 0 0.25rem #dc75b04f!important;
+}
+.input-group:not(.has-validation)>:not(:last-child):not(.dropdown-toggle):not(.dropdown-menu){
+    border-top-right-radius: 8px!important;
+    border-bottom-right-radius: 8px!important;
+}
+.btn-outline-secondary{
+    position: absolute!important;
+    right: 0;
+    height: 100%;
+    border: none;
+}
+.btn-outline-secondary:hover{
+    background-color: #dc75b0;
+    border-color: #dc75b0;
+}
+.input-group>.form-control:focus{
+    z-index: 2;
+    border:2px solid #DC75B0!important;
+}
+.btn-outline-secondary:focus-visible{
+    color: #6c757d!important;
+    outline: none!important;
+    border: none;
+}
+.iti--inline-dropdown .iti__dropdown-content{
+    border-radius: 8px;
+}
+.iti{
+    width: 100%;
+}
+.iti__country.iti__highlight{
+    color: #fff;
+    background-color: #DC75B0;
+}
+.iti__country.iti__highlight:hover{
+    color: #fff;
+    background-color: #DC75B0;
+}
+.iti__country.iti__highlight .iti__dial-code{
+    color: #FFFFFF!important;
+}
+.iti__country.iti__highlight:hover .iti__dial-code{
+    color: #FFFFFF!important;
+}
+.g-recaptcha{
+    margin: 12px 0;
+}
+.submit_btn{
+    /* font-family: 'NotoSans-SemiBold'; */
+    font-family: 'NotoSans-Regular';
+    font-size: 18px;
+    border: none;
+    color: #ffff;
+    padding: 8px 20px;
+    border-radius: 12px;
+    background-image: linear-gradient(to right top, #b197c7, #ba90c6, #c588c1, #d17fba, #dc75b0);
+}
+/* Form Container */
+/* ====================== User Flow Code =================== */

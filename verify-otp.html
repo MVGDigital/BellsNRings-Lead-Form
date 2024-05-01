@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mandatory Form</title>
+    <link rel="shortcut icon" href="./assets/img/bnr-fav.png" type="image/x-icon">
+
+    <!-- Style Files -->
+    <link rel="stylesheet" href="./assets/bootstrap-5.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/gijgo.min.css">
+    <link rel="stylesheet" href="./assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./assets/css/intlTelInput.min.css">
+    <link rel="stylesheet" href="./assets/css/custom.css">
+    <!-- Style Files -->
+</head>
+<body>
+
+    <!-- Header Section -->
+    <nav class="navbar navbar-light">
+        <div class="container-fluid navbar-menu container-space">
+          <a class="navbar-brand"><img src="./assets/img/bnr-logo.png" alt=""></a>
+          <form class="d-flex menus">
+            <a href="">Home</a>
+            <a href="">About Us</a>
+          </form>
+        </div>
+    </nav>
+    <!-- Header Section -->
+
+    <!-- Main Container -->
+    <div class="main-container bg-img">
+        <div class="row ml_50 mr_0 form-container">
+            <div class="col-md-12 col-lg-3">
+                <div class="mt_50 bg-img-content">
+                    <h3>And the two shall become one flesh. So they are no longer two but one flesh. - Mark 10:8</h3>
+                </div> 
+            </div>
+            <div class="col-lg-9 mandatoryForm-container">
+                <div class="container-space">
+                    <div class="title mt_50 mb_40">
+                        <h1>STEP 2 of Create Account - Get Verification Code </h1>
+                    </div>
+
+                    <!-- Form -->
+                    <div class="item-center">
+                        <form id="otpVerificationForm" class="col-md-5 col-md-5 col-lg-5 form-section">
+                            <h5>Please select your preferred <br> means of verification.. </h5>
+                            <div class="col-12">
+                                <div class="form-field mb-3">
+                                    <label for="primaryMobNum-otp">Primary Mobile Number : 
+                                        <button id="edit-PrimaryNum" class="edit-btn">Edit</button></label>
+                                    <div class="opt-field">
+                                        <input type="tel" name="primaryMobNum-otp" id="primaryMobNum-otp" class="enter-otp" placeholder="Enter primary OTP" disabled="disabled" maxlength="4">
+                                        <span id="mobOTP-second" class="otp-timer"></span>
+                                        <span id="mobOTP-icon" class="verified-icon">
+                                            <img src="./assets/img/verify-tick-icon.svg" alt="">
+                                        </span>
+                                        <button id="get-primaryMobNum" class="otp-btn">Get OTP</button>
+                                        <button id="verify-primaryMobNum" class="verify-btn">Verify OTP</button>
+                                    </div>
+                                    <label id="primaryMobNum-OTPsent" class="success-msg" for="primaryMobNum-otp">
+                                        OTP is sent to your mobile number <b id="maskedPrimaryNum">******8765</b>.
+                                    </label>
+                                    <label id="primaryMobNum-error" class="verify-error" for="primaryMobNum-otp">
+                                        Invalid OTP. Please try again.
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div  class="form-field mb-3">
+                                    <label for="whatsappNum-otp">Whatsapp Number : <button id="edit-whatsappNum" class="edit-btn">Edit</button></label>
+                                    <div class="opt-field">
+                                        <input type="tel" name="whatsappNum-otp" id="whatsappNum-otp" class="enter-otp" placeholder="Enter whatsapp OTP" disabled="disabled" maxlength="4">
+                                        <span id="whatsappOTP-second" class="otp-timer">0.00</span>
+                                        <span id="whatsappOTP-icon" class="verified-icon">
+                                            <img src="./assets/img/verify-tick-icon.svg" alt="">
+                                        </span>
+                                        <button id="get-whatsappNum" class="otp-btn">Get OTP</button>
+                                        <button id="verify-whatsappNum" class="verify-btn">Verify OTP</button>
+                                    </div>
+                                    <label id="whatsappNum-OTPsent" class="success-msg" for="whatsappNum-otp">
+                                        OTP is sent to your whatsapp number <b id="maskedWhatsappNum">******8765</b>.
+                                    </label>
+                                    <label id="whatsappNum-error" class="verify-error" for="whatsappNum-otp">
+                                        Invalid OTP. Please try again.
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-field mb-3">
+                                    <label for="email-otp">Email ID : <button id="edit-email" class="edit-btn">Edit</button></label>
+                                    <div class="opt-field">
+                                        <input type="text" name="email-otp" id="email-otp" class="enter-otp" placeholder="Enter email OTP" disabled="disabled" maxlength="4">
+                                        <span id="emailOTP-second" class="otp-timer" >0.00</span>
+                                        <span id="emailOTP-icon" class="verified-icon">
+                                            <img src="./assets/img/verify-tick-icon.svg" alt="">
+                                        </span>
+                                        <button id="get-email" class="otp-btn">Get OTP</button>
+                                        <button id="verify-email" class="verify-btn">Verify OTP</button>
+                                    </div>
+                                    <label id="email-OTPsent" class="success-msg" for="email-otp">
+                                        OTP is sent to your email id <b id="maskedEmail">******765</b>.
+                                    </label>
+                                    <label id="email-error" class="verify-error" for="email-otp">Invalid OTP. Please try again.</label>
+                                </div>
+                            </div>
+                            <div class="col-12 text-center  mt_30 mb_40">
+                                <button type="submit" id="veriyBtnSubmit" class="submit_btn" disabled>Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Form -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Container -->
+    <!-- Popup -->
+    <div id="popupView" class="popup-container">
+        <div class="item-middle height100vh">
+            <div class="col-lg-9 item-right">
+                <div class="col-lg-7 popup">
+                    <div class="col-12 item-right">
+                        <img src="./assets/img/close-icon.svg" alt="" class="close-btn">
+                    </div>
+                    <div class="popup-field">
+                        <form action="" id="update_contactInfo" class="">
+                            <div class="col-12 col-lg-8 col-md-5 col-sm-12 ">
+                                <div id="editPrimaryMobNum" class="form-field edit-field mb-3">
+                                    <label for="primaryMobNum">Primary Mobile Number :</label>
+                                    <input type="tel" name="primaryMobNum" id="primaryMobNum" class="" placeholder="Enter Mobile Number">
+                                </div>
+                                <div id="editWhatsappNum" class="form-field edit-field mb-3">
+                                    <label for="whatsappNum">Whatsapp Number :</label>
+                                    <input type="tel" name="whatsappNum" id="whatsappNum" class="" placeholder="Enter whatsapp Number">
+                                </div>
+                                <div id="editEmail" class="form-field edit-field mb-3">
+                                    <label for="email">Email ID :</label>
+                                    <input type="text" name="email" id="email" class="" placeholder="Enter email">
+                                </div>
+                            </div>
+                            <div class="col-12 text-center mt_30">
+                                <button type="submit" class="submit_btn">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Popup -->
+
+
+
+
+    <!-- plugin Files -->
+    <script src="./assets/js/intlTelInput.min.js"></script>
+    <script src="./assets/bootstrap-5.0.2/js/bootstrap.min.js"></script>
+    <script src="./assets/js/jquery-3.7.1.min.js"></script>
+    <script src="./assets/js/custom.js"></script>
+    <script src="./assets/js/gijgo.min.js"></script>
+    <!-- plugin Files -->
+    
+</body>
+</html>

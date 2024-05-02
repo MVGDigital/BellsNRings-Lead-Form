@@ -126,7 +126,7 @@ label.error{
     margin: 0 50px;
 }
 .title h1{
-    font-size: 32px;
+    font-size: 30px;
     font-weight: bold;
     color: #000;
     text-align: center;
@@ -473,11 +473,12 @@ label[for="state"]#state-error {
 }
 .success-msg{
     display: none;
+    text-align: center;
+    font-family: 'NotoSans-Regular';
     font-size: 14px!important;
     color: #17c008!important;
     text-transform: math-auto!important;
 }
-
 .otp-btn[disabled]{
     opacity: 0.5;
     cursor: not-allowed;
@@ -701,14 +702,23 @@ label[for="state"]#state-error {
 /* End Wizard Form */
 /* Form Container */
 /* Success Message */
-.success-msg{
-    text-align: center;
-}
-.success-msg .success-icon{
+
+.success-content .success-icon{
     margin-bottom: 20px;
+}.success-content h4{
+    font-family: 'NotoSans-Medium';
 }
-.success-msg p{
+.success-content p{
+    color: #666666;
     font-family: 'NotoSans-Regular';
+}
+.success-content{
+    text-align: center;
+    font-family: 'NotoSans-Regular';
+}
+.success-content p b{
+    color: #666666;
+    font-family: 'NotoSans-SemiBold';
 }
 /* Success Message */
 /* ====================== User Flow Code =================== */

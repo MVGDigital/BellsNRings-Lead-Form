@@ -68,6 +68,9 @@ label.error{
     font-size: 14px!important;
     text-transform: inherit!important;
 }
+label .requirdField{
+    color: #ff1d1d!important;
+}
 .form-select.is-invalid, .was-validated .form-select:invalid{
     border-color: #DC75B0!important;
 }
@@ -428,7 +431,6 @@ label[for="state"]#state-error {
 
 /* OTP Verification Form */
 .opt-field{
-    position: relative;
     display: flex;
     align-items: center;
 }
@@ -487,9 +489,13 @@ label[for="state"]#state-error {
     opacity: 0.5;
     cursor: not-allowed;
 }
+.fieldWithBtn{
+    width: 100%;
+    position: relative;
+}
 .otp-timer{
-    right: -50px;
-    position: absolute;
+    /* right: -50px;
+    position: absolute; */
     color: #6A2B80;
     font-family: 'NotoSans-semiBold';
     display: none;
@@ -527,6 +533,9 @@ label[for="state"]#state-error {
     top: 0;
     left: 0;
 }
+.popup-height{
+    height: 100vh;
+}
 #popupView{
     display: none;
 }
@@ -546,12 +555,21 @@ label[for="state"]#state-error {
     justify-content: center;
     flex-wrap: wrap;
 }
-
-.edit-field{
+/* .edit-field{
     display: none;
-}
+} */
 .close-btn{
     cursor: pointer;
+}
+.spinner{
+    text-align: center;
+    width: 100%;
+}
+.spinner-gif{
+    display: none;
+}
+.spinner img{
+    width: 10%;
 }
 /* Popup */
 
@@ -595,6 +613,9 @@ label[for="state"]#state-error {
   .wizard-progress h5{
     font-size: 18px;
     font-family: 'NotoSans-Medium';
+  }
+  .progress-step-1{
+    font-weight: 600;
   }
   .progress-bar{
     background-color: #DC75B0;
@@ -781,9 +802,23 @@ label[for="state"]#state-error {
     .container-space{
         margin: 0 20px;
     }
+    .select2-container{
+        width: 100% !important;
+    }
+    .otp-btn {
+        right: 5%;
+    }
 }
 @media only screen and (max-width: 480px){
-    
+    .height100vh{
+        height: auto!important;
+    }
+    .title h1{
+        font-size: 20px;
+    }
+    .mandatoryForm-container h5{
+        font-size: 18px;
+    }
 }
 @media only screen and (max-device-width: 667px) and (orientation: landscape){}
 /* Media Query's */

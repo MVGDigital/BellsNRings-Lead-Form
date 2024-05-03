@@ -21,8 +21,8 @@
         <div class="container-fluid navbar-menu container-space">
           <a class="navbar-brand"><img src="./assets/img/bnr-logo.png" alt=""></a>
           <form class="d-flex menus">
-            <a href="">Home</a>
-            <a href="">About Us</a>
+            <a href="https://www.bellsnringsmatrimony.com/">Home</a>
+            <a href="https://www.bellsnringsmatrimony.com/about-us">About Us</a>
           </form>
         </div>
     </nav>
@@ -48,16 +48,19 @@
                             <h5>Please select your preferred <br> means of verification.. </h5>
                             <div class="col-12">
                                 <div class="form-field mb-3">
-                                    <label for="primaryMobNum-otp">Primary Mobile Number : 
+                                    <label for="primaryMobNum-otp">Primary Mobile Number 
                                         <button id="edit-PrimaryNum" class="edit-btn">Edit</button></label>
                                     <div class="opt-field">
-                                        <input type="tel" name="primaryMobNum-otp" id="primaryMobNum-otp" class="enter-otp" placeholder="Enter primary OTP" disabled="disabled" maxlength="4">
-                                        <span id="mobOTP-second" class="otp-timer"></span>
+                                        <div class="fieldWithBtn">
+                                            <input type="tel" name="primaryMobNum-otp" id="primaryMobNum-otp" class="enter-otp" placeholder="Enter primary OTP" disabled="disabled" maxlength="4">
+                                            <button id="get-primaryMobNum" class="otp-btn">Get OTP</button>
+                                            <button id="verify-primaryMobNum" class="verify-btn">Verify OTP</button>
+                                        </div>
+                                        <span id="mobOTP-second" class="otp-timer">0.00</span>
                                         <span id="mobOTP-icon" class="verified-icon">
                                             <img src="./assets/img/verify-tick-icon.svg" alt="">
                                         </span>
-                                        <button id="get-primaryMobNum" class="otp-btn">Get OTP</button>
-                                        <button id="verify-primaryMobNum" class="verify-btn">Verify OTP</button>
+                                        
                                     </div>
                                     <label id="primaryMobNum-OTPsent" class="success-msg" for="primaryMobNum-otp">
                                         OTP is sent to your mobile number <b id="maskedPrimaryNum">******8765</b>.
@@ -69,15 +72,17 @@
                             </div>
                             <div class="col-12">
                                 <div  class="form-field mb-3">
-                                    <label for="whatsappNum-otp">Whatsapp Number : <button id="edit-whatsappNum" class="edit-btn">Edit</button></label>
+                                    <label for="whatsappNum-otp">Whatsapp Number<button id="edit-whatsappNum" class="edit-btn">Edit</button></label>
                                     <div class="opt-field">
-                                        <input type="tel" name="whatsappNum-otp" id="whatsappNum-otp" class="enter-otp" placeholder="Enter whatsapp OTP" disabled="disabled" maxlength="4">
+                                        <div class="fieldWithBtn">
+                                            <input type="tel" name="whatsappNum-otp" id="whatsappNum-otp" class="enter-otp" placeholder="Enter whatsapp OTP" disabled="disabled" maxlength="4">
+                                            <button id="get-whatsappNum" class="otp-btn">Get OTP</button>
+                                            <button id="verify-whatsappNum" class="verify-btn">Verify OTP</button>
+                                        </div>
                                         <span id="whatsappOTP-second" class="otp-timer">0.00</span>
                                         <span id="whatsappOTP-icon" class="verified-icon">
                                             <img src="./assets/img/verify-tick-icon.svg" alt="">
                                         </span>
-                                        <button id="get-whatsappNum" class="otp-btn">Get OTP</button>
-                                        <button id="verify-whatsappNum" class="verify-btn">Verify OTP</button>
                                     </div>
                                     <label id="whatsappNum-OTPsent" class="success-msg" for="whatsappNum-otp">
                                         OTP is sent to your whatsapp number <b id="maskedWhatsappNum">******8765</b>.
@@ -91,13 +96,15 @@
                                 <div class="form-field mb-3">
                                     <label for="email-otp">Email ID : <button id="edit-email" class="edit-btn">Edit</button></label>
                                     <div class="opt-field">
-                                        <input type="text" name="email-otp" id="email-otp" class="enter-otp" placeholder="Enter email OTP" disabled="disabled" maxlength="4">
+                                        <div class="fieldWithBtn">
+                                            <input type="text" name="email-otp" id="email-otp" class="enter-otp" placeholder="Enter email OTP" disabled="disabled" maxlength="4">
+                                            <button id="get-email" class="otp-btn">Get OTP</button>
+                                            <button id="verify-email" class="verify-btn">Verify OTP</button>
+                                        </div>                                
                                         <span id="emailOTP-second" class="otp-timer" >0.00</span>
                                         <span id="emailOTP-icon" class="verified-icon">
                                             <img src="./assets/img/verify-tick-icon.svg" alt="">
                                         </span>
-                                        <button id="get-email" class="otp-btn">Get OTP</button>
-                                        <button id="verify-email" class="verify-btn">Verify OTP</button>
                                     </div>
                                     <label id="email-OTPsent" class="success-msg" for="email-otp">
                                         OTP is sent to your email id <b id="maskedEmail">******765</b>.
@@ -118,30 +125,23 @@
     <!-- Main Container -->
     <!-- Popup -->
     <div id="popupView" class="popup-container">
-        <div class="item-middle height100vh">
+        <div class="item-middle popup-height">
             <div class="col-lg-9 item-right">
                 <div class="col-lg-7 popup">
                     <div class="col-12 item-right">
                         <img src="./assets/img/close-icon.svg" alt="" class="close-btn">
                     </div>
                     <div class="popup-field">
-                        <form action="" id="update_contactInfo" class="">
-                            <div class="col-12 col-lg-8 col-md-5 col-sm-12 ">
-                                <div id="editPrimaryMobNum" class="form-field edit-field mb-3">
-                                    <label for="primaryMobNum">Primary Mobile Number :</label>
-                                    <input type="tel" name="primaryMobNum" id="primaryMobNum" class="" placeholder="Enter Mobile Number">
-                                </div>
-                                <div id="editWhatsappNum" class="form-field edit-field mb-3">
-                                    <label for="whatsappNum">Whatsapp Number :</label>
-                                    <input type="tel" name="whatsappNum" id="whatsappNum" class="" placeholder="Enter whatsapp Number">
-                                </div>
-                                <div id="editEmail" class="form-field edit-field mb-3">
-                                    <label for="email">Email ID :</label>
-                                    <input type="text" name="email" id="email" class="" placeholder="Enter email">
-                                </div>
+                        <form action="" id="update_contactInfo">
+                            <div id="update-number" class="col-12 col-lg-8 col-md-5 col-sm-12">
+                                
+                            </div>
+                            <div class="spinner">
+                                <img class="spinner-gif" src="./assets/img/spinner.gif" alt="">
+                                <label class="success-msg">Mobile number updated successfully!</label>
                             </div>
                             <div class="col-12 text-center mt_30">
-                                <button type="submit" class="submit_btn">Update</button>
+                                <button type="submit" id="update_num" class="submit_btn">Update</button>
                             </div>
                         </form>
                     </div>
@@ -158,8 +158,8 @@
     <script src="./assets/js/intlTelInput.min.js"></script>
     <script src="./assets/bootstrap-5.0.2/js/bootstrap.min.js"></script>
     <script src="./assets/js/jquery-3.7.1.min.js"></script>
+    <script src="./assets/js/jquery.validate.min.js"></script>
     <script src="./assets/js/custom.js"></script>
-    <script src="./assets/js/gijgo.min.js"></script>
     <!-- plugin Files -->
     
 </body>

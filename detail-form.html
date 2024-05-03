@@ -21,8 +21,8 @@
         <div class="container-fluid navbar-menu container-space">
           <a class="navbar-brand"><img src="./assets/img/bnr-logo.png" alt=""></a>
           <form class="d-flex menus">
-            <a href="">Home</a>
-            <a href="">About Us</a>
+            <a href="https://www.bellsnringsmatrimony.com/">Home</a>
+            <a href="https://www.bellsnringsmatrimony.com/about-us">About Us</a>
           </form>
         </div>
     </nav>
@@ -57,7 +57,7 @@
                                             <path d="M15 0C6.71484 0 0 6.71484 0 15C0 23.2852 6.71484 30 15 30C23.2852 30 30 23.2852 30 15C30 6.71484 23.2852 0 15 0ZM15 25.002C9.47461 25.002 4.99805 20.5254 4.99805 15C4.99805 9.47461 9.47461 4.99805 15 4.99805C20.5254 4.99805 25.002 9.47461 25.002 15C25.002 20.5254 20.5254 25.002 15 25.002ZM15 10.002C12.2402 10.002 10.002 12.2402 10.002 15C10.002 17.7598 12.2402 19.998 15 19.998C17.7598 19.998 19.998 17.7598 19.998 15C19.998 12.2402 17.7598 10.002 15 10.002Z" fill="#DC75B0"/>
                                         </svg> 
                                     </div> 
-                                    <h5>BASIC DETAILS</h5>
+                                    <h5 class="progress-step-1">BASIC DETAILS</h5>
                                 </div>
                                 <div class="wizard-progress" onclick="displayStep(2)">
                                     <div class="step-circle step2-circle">
@@ -65,7 +65,7 @@
                                             <path d="M15 0C6.71484 0 0 6.71484 0 15C0 23.2852 6.71484 30 15 30C23.2852 30 30 23.2852 30 15C30 6.71484 23.2852 0 15 0ZM15 25.002C9.47461 25.002 4.99805 20.5254 4.99805 15C4.99805 9.47461 9.47461 4.99805 15 4.99805C20.5254 4.99805 25.002 9.47461 25.002 15C25.002 20.5254 20.5254 25.002 15 25.002ZM15 10.002C12.2402 10.002 10.002 12.2402 10.002 15C10.002 17.7598 12.2402 19.998 15 19.998C17.7598 19.998 19.998 17.7598 19.998 15C19.998 12.2402 17.7598 10.002 15 10.002Z" fill="#C5C5C5"/>
                                         </svg>
                                     </div>
-                                    <h5>PROFESSIONAL<br> DETAILS</h5>
+                                    <h5 class="progress-step-2">PROFESSIONAL<br> DETAILS</h5>
                                 </div>
                                 <div class="wizard-progress" onclick="displayStep(3)">
                                     <div class="step-circle step3-circle">
@@ -73,7 +73,7 @@
                                             <path d="M15 0C6.71484 0 0 6.71484 0 15C0 23.2852 6.71484 30 15 30C23.2852 30 30 23.2852 30 15C30 6.71484 23.2852 0 15 0ZM15 25.002C9.47461 25.002 4.99805 20.5254 4.99805 15C4.99805 9.47461 9.47461 4.99805 15 4.99805C20.5254 4.99805 25.002 9.47461 25.002 15C25.002 20.5254 20.5254 25.002 15 25.002ZM15 10.002C12.2402 10.002 10.002 12.2402 10.002 15C10.002 17.7598 12.2402 19.998 15 19.998C17.7598 19.998 19.998 17.7598 19.998 15C19.998 12.2402 17.7598 10.002 15 10.002Z" fill="#C5C5C5"/>
                                         </svg>
                                     </div>
-                                    <h5>FAMILY DETAILS</h5>
+                                    <h5 class="progress-step-3">FAMILY DETAILS</h5>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
                             <div id="detailedForm1" class="form-section">
                                 <div class="col-12 col-lg-5 col-md-5 col-sm-12">
                                     <div class="form-field mb-3">
-                                        <label for="maritalStatus">Marital Status :</label>
+                                        <label for="maritalStatus">Marital Status<span class="requirdField" >*</span> </label>
                                         <select id="maritalStatus" class="form-select" name="maritalStatus">
                                             <option value="" selected>Select marital status</option>
                                             <option value="never married">Never Married</option>
@@ -101,7 +101,7 @@
                                 </div>
                                 <div class="col-12 col-lg-5 col-md-5 col-sm-12">
                                     <div class="form-field mb-3">
-                                        <label for="mothertongue">Mother Tongue :</label>
+                                        <label for="mothertongue">Mother Tongue <span class="requirdField" >*</span></label>
                                         <select id="mothertongue" class="form-select" name="mothertongue">
                                             <option value="" selected>Select mother tongue</option>
                                             <option value="arabic">Arabic</option>
@@ -139,10 +139,9 @@
                                 </div>
                                 <div class="col-12 col-lg-5 col-md-5 col-sm-12">
                                     <div class="form-field mb-3">
-                                        <label for="caste">Caste :</label>
+                                        <label for="caste">Caste <span class="requirdField" >*</span></label>
                                         <select id="caste" class="form-select" name="caste">
                                             <option value="" selected>Select caste</option>
-                                            <option value="any">Any</option>
                                             <option value="achari">Achari</option>
                                             <option value="adi_dravida">Adi Dravida</option>
                                             <option value="agamudiyar">Agamudiyar</option>
@@ -176,7 +175,7 @@
                                 </div>
                                 <div class="col-12 col-lg-5 col-md-5 col-sm-12">
                                     <div class="form-field mb-3">
-                                        <label for="denomination">Denomination :</label>
+                                        <label for="denomination">Denomination <span class="requirdField" >*</span></label>
                                         <select id="denomination" class="form-select" name="denomination">
                                             <option value="" selected>Select denomination</option>
                                             <option value="ag">AG</option>
@@ -228,7 +227,7 @@
                                 <div class="col-12 col-lg-5 col-md-5 col-sm-12 d-flex">
                                     <div class="height-width pr">
                                         <div class="form-field mb-3">
-                                            <label for="height">Height :</label>
+                                            <label for="height">Height <span class="requirdField" >*</span></label>
                                             <select id="height" class="form-select" name="height">
                                                 <option value="">select height</option>
                                                 <option value="4ft_1in">4ft 1in</option>
@@ -274,7 +273,7 @@
                                     </div>
                                     <div class="height-width pl">
                                         <div class="form-field mb-3">
-                                            <label for="weight">Weight :</label>
+                                            <label for="weight">Weight <span class="requirdField" >*</span></label>
                                             <select id="weight" class="form-select" name="weight">
                                                 <option value="">select weight</option>
                                                 <option value="40_kg">40 kg</option>
@@ -384,7 +383,7 @@
                                 </div>
                                 <div class="col-12 col-lg-5 col-md-5 col-sm-12">
                                     <div class="form-field mb-3">
-                                        <label for="complexion">Complexion :</label>
+                                        <label for="complexion">Complexion <span class="requirdField" >*</span></label>
                                         <select id="complexion" class="form-select" name="complexion">
                                             <option value="" selected>Select complexion</option>
                                             <option value="dark">Dark</option>
@@ -408,32 +407,32 @@
                             <div id="detailedForm2" class="form-section">
                                 <div class="col-12 col-lg-5 col-md-5 col-sm-12">
                                     <div class="form-field mb-3">
-                                        <label for="last_edu_level">Last Education Level :</label>
+                                        <label for="last_edu_level">Last Education Level <span class="requirdField" >*</span></label>
                                         <input type="text" id="last_edu_level" name="last_edu_level" placeholder="Enter Last education level">
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-5 col-md-5 col-sm-12">
                                     <div class="form-field mb-3">
-                                        <label for="occupation">Occupation :</label>
+                                        <label for="occupation">Occupation <span class="requirdField" >*</span></label>
                                         <input type="text" id="occupation" name="occupation" placeholder="Enter Occupation">
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-5 col-md-5 col-sm-12">
                                     <div class="form-field mb-3">
-                                        <label for="company_name">Company Name :</label>
+                                        <label for="company_name">Company Name <span class="requirdField" >*</span></label>
                                         <input type="text" id="company_name" name="company_name" placeholder="Enter company name">
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-5 col-md-5 col-sm-12">
                                     <div class="form-field mb-3">
-                                        <label for="annual_income">Annual Income :</label>
+                                        <label for="annual_income">Annual Income <span class="requirdField" >*</span></label>
                                         <input type="text" id="annual_income" name="annual_income" class="price-format-input form-select inr-icon" placeholder="Enter annual income">
                                         <div id="textBelowIncome" class=""></div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-5 col-md-5 col-sm-12">
                                     <div class="form-field mb-3">
-                                        <label for="work_location">Work Location :</label>
+                                        <label for="work_location">Work Location <span class="requirdField" >*</span></label>
                                         <input type="text" id="work_location" name="work_location" class="form-select locarion" placeholder="Enter work location">
                                     </div>
                                 </div>
@@ -449,31 +448,31 @@
                             <div id="detailedForm2" class="form-section">
                                 <div class="col-12 col-lg-5 col-md-5 col-sm-12">
                                     <div class="form-field mb-3">
-                                        <label for="fatherName">Father Name :</label>
+                                        <label for="fatherName">Father Name <span class="requirdField" >*</span></label>
                                         <input type="text" id="fatherName" name="fatherName" placeholder="Enter father name">
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-5 col-md-5 col-sm-12">
                                     <div class="form-field mb-3">
-                                        <label for="fatherOccupation">Father Occupation :</label>
+                                        <label for="fatherOccupation">Father Occupation <span class="requirdField" >*</span></label>
                                         <input type="text" id="fatherOccupation" name="fatherOccupation" placeholder="Enter father occupation">
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-5 col-md-5 col-sm-12">
                                     <div class="form-field mb-3">
-                                        <label for="motherName">Mother Name :</label>
+                                        <label for="motherName">Mother Name <span class="requirdField" >*</span></label>
                                         <input type="text" id="motherName" name="motherName" placeholder="Enter mother name">
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-5 col-md-5 col-sm-12">
                                     <div class="form-field mb-3">
-                                        <label for="motherOccupation">Mother Occupation :</label>
+                                        <label for="motherOccupation">Mother Occupation <span class="requirdField" >*</span></label>
                                         <input type="text" id="motherOccupation" name="motherOccupation" placeholder="Enter mother occupation">
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-5 col-md-5 col-sm-12">
                                     <div class="form-field mb-3">
-                                        <label for="familystatus">Family Status :</label>
+                                        <label for="familystatus">Family Status <span class="requirdField" >*</span></label>
                                         <select id="familystatus" name="familystatus"  class="form-select">
                                             <option value="" selected>Select family status</option>
                                             <option value="lower_middle_class">Lower Middle Class</option>
@@ -489,7 +488,7 @@
                                 </div>
                                 <div class="col-12 col-lg-5 col-md-5 col-sm-12">
                                     <div class="form-field mb-3">
-                                        <label for="noOfBrother">No. of Brothers :</label>
+                                        <label for="noOfBrother">No. of Brothers <span class="requirdField" >*</span></label>
                                         <select id="noOfBrother" name="noOfBrother" class="form-select" >
                                             <option value="no" selected>No</option>
                                             <option value="1">1</option>
@@ -506,7 +505,7 @@
                                 </div>
                                 <div class="col-12 col-lg-5 col-md-5 col-sm-12">
                                     <div class="form-field mb-3">
-                                        <label for="noOfsister">No. of Sisters :</label>
+                                        <label for="noOfsister">No. of Sisters <span class="requirdField" >*</span></label>
                                         <select id="noOfsister" name="noOfsister" class="form-select">
                                             <option value="no" selected>No</option>
                                             <option value="1">1</option>
@@ -526,13 +525,13 @@
                                 </div>
                                 <div class="col-12 col-lg-5 col-md-5 col-sm-12">
                                     <div class="form-field mb-3">
-                                        <label for="address">Address:</label>
+                                        <label for="address">Address <span class="requirdField" >*</span></label>
                                         <textarea id="address" name="address" class="address"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-5 col-md-5 col-sm-12">
                                     <div class="form-field mb-3">
-                                        <label for="citizenOf">Citizen of :</label>
+                                        <label for="citizenOf">Citizen of <span class="requirdField" >*</span></label>
                                         <input type="text" id="citizenOf" name="citizenOf" placeholder="Enter citizen of">
                                     </div>
                                 </div>
@@ -541,7 +540,7 @@
                                 </div>
                                 <div class="col-12 col-lg-5 col-md-5 col-sm-12">
                                     <div class="form-field mb-3">
-                                        <label for="same_address">Permanent Address is :</label>
+                                        <label for="same_address">Permanent Address is <span class="requirdField" >*</span></label>
                                         <div class="form-check"> 
                                             <input class="form-check-input" type="radio" id="same_address" name="choseAddress" value="same_as_above" checked>
                                             <label class="form-check-label" for="same_address">Same as above</label>
@@ -557,7 +556,7 @@
                                 </div>
                                 <div class="col-12 col-lg-5 col-md-5 col-sm-12">
                                     <div class="form-field mb-3">
-                                        <label for="citizenOf">Need to upload your recent photo :</label>
+                                        <label for="citizenOf">Need to upload your recent photo</label>
                                         <div class="img-upload">
                                             <span class="btn_upload">
                                               <input type="file" id="imag" name="imag" class="input-img"/>

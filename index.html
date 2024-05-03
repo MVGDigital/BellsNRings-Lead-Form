@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="./assets/bootstrap-5.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/select2.min.css"/>
     <link rel="stylesheet" href="./assets/css/bootstrap-datepicker.min.css">
-    <link rel="stylesheet" href="./assets/css/gijgo.min.css">
     <link rel="stylesheet" href="./assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="./assets/css/intlTelInput.min.css">
     <link rel="stylesheet" href="./assets/css/custom.css">
@@ -25,8 +24,8 @@
         <div class="container-fluid navbar-menu container-space">
           <a class="navbar-brand"><img src="./assets/img/bnr-logo.png" alt=""></a>
           <form class="d-flex menus">
-            <a href="">Home</a>
-            <a href="">About Us</a>
+            <a href="https://www.bellsnringsmatrimony.com/">Home</a>
+            <a href="https://www.bellsnringsmatrimony.com/about-us">About Us</a>
           </form>
         </div>
     </nav>
@@ -50,7 +49,7 @@
                     <form id="mandatoryForm" class="form-section">
                         <div class="col-12 col-lg-5 col-md-5 col-sm-12 mb-3">
                             <div class="form-field">
-                                <label for="profileFor">Profile Created for :</label>
+                                <label for="profileFor">Profile Created for <span class="requirdField" >*</span></label>
                                 <select id="profileFor" class="form-select" name="profileFor">
                                     <option value="">Select Profile</option>
                                     <option value="myself">Myself</option>
@@ -66,7 +65,7 @@
                         </div>
                         <div class="col-12 col-lg-5 col-md-5 col-sm-12 mb-3">
                             <div class="form-field">
-                                <label for="profileFor">Select Gender :</label>
+                                <label for="profileFor">Select Gender <span class="requirdField" >*</span></label>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" id="male" name="gender" value="male" checked>
                                     <label class="form-check-label" for="male">Male</label>
@@ -79,56 +78,56 @@
                         </div>
                         <div class="col-12 col-lg-5 col-md-5 col-sm-12 mb-3">
                             <div class="form-field">
-                                <label for="firstName">First Name :</label>
+                                <label for="firstName">First Name <span class="requirdField" >*</span></label>
                                 <input type="text" id="firstName" name="firstName" placeholder="Enter first name">
                             </div>
                         </div>
                         <div class="col-12 col-lg-5 col-md-5 col-sm-12 mb-3">
                             <div class="form-field">
-                                <label for="lastName">Last Name :</label>
+                                <label for="lastName">Last Name <span class="requirdField" >*</span></label>
                                 <input type="text" id="lastName" name="lastName" placeholder="Enter last name">
                             </div>
                         </div>
                         <div class="col-12 col-lg-5 col-md-5 col-sm-12 mb-3">
                             <div class="form-field">
-                                <label for="dob">Select Date of Birth :</label>
+                                <label for="dob">Select Date of Birth <span class="requirdField" >*</span></label>
                                 <input type="text" id="dob" name="dob" class="form-select dob" placeholder="Enter DOB">
                             </div>
                         </div>
                         <div class="col-12 col-lg-5 col-md-5 col-sm-12 mb-3">
                             <div class="form-field">
-                                <label for="country">Currently Residing In Country :</label>
+                                <label for="country">Currently Residing In Country <span class="requirdField" >*</span></label>
                                 <select id="country" class="form-select" name="country"></select>
                             </div>
                         </div>
                         <div class="col-12 col-lg-5 col-md-5 col-sm-12 mb-3">
                             <div class="form-field">
-                                <label for="state">Currently Residing In State :</label>
+                                <label for="state">Currently Residing In State <span class="requirdField" >*</span></label>
                                 <select id="state" name="state" class="form-select"></select>
                             </div>
                         </div>
                         <div class="col-12 col-lg-5 col-md-5 col-sm-12 mb-3">
                             <div class="form-field">
-                                <label for="email">Email ID :</label>
+                                <label for="email">Email ID <span class="requirdField" >*</span></label>
                                 <input type="text" id="email" name="email" placeholder="Enter email">
                             </div>
                         </div>
                         <div class="col-12 col-lg-5 col-md-5 col-sm-12 mb-3">
                             <div class="form-field">
-                                <label for="primaryMobNum">Primary Mobile Number :</label>
+                                <label for="primaryMobNum">Primary Mobile Number <span class="requirdField" >*</span></label>
                                 <input type="tel" id="primaryMobNum" name="primaryMobNum" class="mob_number" placeholder="Enter Mobile Number">
                             </div>
                         </div>
                         <div class="col-12 col-lg-5 col-md-5 col-sm-12 mb-3">
                             <div class="form-field">
-                                <label for="sameNumber">Whatsapp Number below is :</label>
+                                <label for="sameNumber">Whatsapp Number below is <span class="requirdField" >*</span></label>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" id="sameNumber" name="addWhatsappNum" value="sameNumber" checked>
-                                    <label class="form-check-label" for="sameNumber">Same as above</label>
+                                    <label class="form-check-label" for="sameNumber">Same as primary number</label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" id="differentNumber" name="addWhatsappNum" value="differentNumber">
-                                    <label class="form-check-label" for="differentNumber">Different than above</label>
+                                    <label class="form-check-label" for="differentNumber">Different than primary number</label>
                                 </div>
                             </div>
                         </div>
@@ -162,7 +161,6 @@
     <script src="./assets/bootstrap-5.0.2/js/bootstrap.min.js"></script>
     <script src="./assets/js/select2.min.js"></script>
     <script src="./assets/js/jquery.validate.min.js"></script>
-    <script src="./assets/js/gijgo.min.js"></script>
     <script src="./assets/js/recaptcha.api.js" async defer></script>
 
     <script src="./assets/js/country_code.js"></script>

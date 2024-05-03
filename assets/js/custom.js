@@ -1,4 +1,10 @@
 $(document).ready(function(){
+/* var homePage = "https://mvgdigital.com/bellsnrings/";
+var indexPage = "https://mvgdigital.com/bellsnrings/index.html";
+var verifyOTPPage = "https://mvgdigital.com/bellsnrings/verify-otp.html";
+var detailPage = "https://mvgdigital.com/bellsnrings/detail-form.html";
+var successPage = "https://mvgdigital.com/bellsnrings/success.html"; */
+
 var homePage = "http://localhost/projects/BellsNRings/";
 var indexPage = "http://localhost/projects/BellsNRings/index.html";
 var verifyOTPPage = "http://localhost/projects/BellsNRings/verify-otp.html";
@@ -132,12 +138,12 @@ if (window.location.href === homePage && indexPage) {
             $('#addNewNumber').show();            
             document.getElementById('addNewNumber').innerHTML = `
                 <div  class="form-field">
-                    <label for="whatsappNum">Whatsapp Number :</label>
+                    <label for="whatsappNum">Whatsapp Number <span class="requirdField" >*</span></label>
                     <input type="tel" id="whatsappNum" name="whatsappNum" class="mob_number" placeholder="Enter whatsapp Number">
                 </div>`
             ;
             const whatsappNum = document.querySelector("#whatsappNum");
-            const whatsappNumIti = window.intlTelInput(whatsappNum, {
+            const whatsappNumItt = window.intlTelInput(whatsappNum, {
                 initialCountry: "in",
                 nationalMode: false,
                 separateDialCode: true,
@@ -145,6 +151,29 @@ if (window.location.href === homePage && indexPage) {
                 utilsScript: "./assets/js/utils.min.js?1714035314356"
 
             }); 
+            // Get the input field and initialize the intlTelInput instance
+            whatsappNum.addEventListener("input", function(e) {
+                // Get the entered value
+                let inputValue = e.target.value;
+            
+                // Remove any non-numeric characters
+                inputValue = inputValue.replace(/[^\d+]/g, '');
+            
+                // Update the input field value with only numeric characters
+                e.target.value = inputValue;
+                // Get the selected country's data
+            });
+            $.validator.addMethod("matchCountryCode", function(value, element) {
+                // Get the selected country's dial code
+                const selectedCountryData = whatsappNumItt.getSelectedCountryData();
+                const countryCode = selectedCountryData.dialCode;
+            
+                // Remove any non-numeric characters from the entered mobile number
+                const sanitizedMobileNumber = value.replace(/\D/g, '');
+            
+                // Check if the mobile number starts with the country code
+                return sanitizedMobileNumber.startsWith(countryCode);
+            }, "Mobile number must match the selected country code.");
             
         } else {
             // Clear the address field if "Same as above" is selected
@@ -164,10 +193,14 @@ if (window.location.href === homePage && indexPage) {
                 required: true
             },
             firstName: {
-                required: true
+                required: true,
+                minlength: 1, // Minimum length of 10 digits
+                maxlength: 50
             },
             lastName: {
-                required: true
+                required: true,
+                minlength: 1,
+                maxlength: 50
             },
             dob: {
                 required: true
@@ -184,13 +217,18 @@ if (window.location.href === homePage && indexPage) {
             },
             primaryMobNum: {
                 required: true,
+                minlength: 13,
+                maxlength: 13,
+                matchCountryCode: true
             },
             addWhatsappNum:{
                 required: true,
             },
             whatsappNum: {
                 required: true,
-                number: true
+                minlength: 13,
+                maxlength: 13,
+                matchCountryCode: true
             }
         },
         messages: {
@@ -201,10 +239,14 @@ if (window.location.href === homePage && indexPage) {
                 required: "This field is required."
             },
             firstName: {
-                required: "This field is required."
+                required: "This field is required.",
+                minlength: "First name should be must be 1 letters.", // Minimum length of 10 digits
+                maxlength: "First name cannot be more than 50 letters"
             },
             lastName: {
-                required: "This field is required."
+                required: "This field is required.",
+                minlength: "Last name should be must be 1 letters.", // Minimum length of 10 digits
+                maxlength: "Last name cannot be more than 50 letters"
             },
             dob: {
                 required: "This field is required."
@@ -221,6 +263,8 @@ if (window.location.href === homePage && indexPage) {
             },
             primaryMobNum: {
                 required: "This field is required.",
+                minlength: "Mobile number must be at least 12 digits.",
+                maxlength: "Mobile number cannot be more than 12 digits.",
                 matchCountryCode: "Mobile number must match the selected country code."
             },
             addWhatsappNum:{
@@ -228,7 +272,9 @@ if (window.location.href === homePage && indexPage) {
             },
             whatsappNum: {
                 required: "This field is required.",
-                number: "Please enter a valid Whatsapp number"
+                minlength: "Mobile number must be at least 12 digits.",
+                maxlength: "Mobile number cannot be more than 12 digits.",
+                matchCountryCode: "Please enter a valid Whatsapp number"
             }
         },
         errorPlacement: function (error, element) {
@@ -236,7 +282,9 @@ if (window.location.href === homePage && indexPage) {
                 error.insertAfter(element.next(".select2-container"));
             }else if (element.attr("id") == "country") {
                 error.insertAfter(element.next(".select2-container"));
-            } else {
+            }else if (element.attr("id") == "state") {
+                error.insertAfter(element.next(".select2-container"));
+            }else {
                 error.insertAfter(element);
             }
         },
@@ -247,14 +295,13 @@ if (window.location.href === homePage && indexPage) {
             });
             console.log(formData);
             // Form submission code goes here
-            window.location.href = "http://localhost/projects/BellsNRings/verify-otp.html";
+            window.location.href = "https://mvgdigital.com/bellsnrings/verify-otp.html";
             return false; // Prevent form submission for this example
         },
     });
    
 }else if(window.location.href === verifyOTPPage) {
-    // VErify OTP Js
-
+    // Verify OTP Js
     $(".edit-btn").click(function(event){
         event.preventDefault();
         var editbtnId = $(this).attr('id');
@@ -262,28 +309,160 @@ if (window.location.href === homePage && indexPage) {
         
         if(editbtnId == "edit-PrimaryNum"){
             $('#popupView').show('slow');
-            $('#editPrimaryMobNum').show();
+            
 
-            $('#editEmail').hide();
-            $('#editWhatsappNum').hide();
+            document.getElementById('update-number').innerHTML = `
+                <div id="editPrimaryMobNum" class="form-field edit-field mb-3">
+                <label for="primaryMobNum">Primary Mobile Number :</label>
+                <input type="tel" name="primaryMobNum" id="primaryMobNum" class="" placeholder="Enter Mobile Number">
+            </div>`;
+
+            //Mobile number validation
+            const primaryNum = document.querySelector("#primaryMobNum");
+            const primaryNumItt = window.intlTelInput(primaryNum, {
+                initialCountry: "in",
+                nationalMode: false,
+                separateDialCode: true,
+                showSelectedDialCode: false,
+                utilsScript: "./assets/js/utils.min.js?1714035314356"
+            });
+
+            // Get the input field and initialize the intlTelInput instance
+            primaryNum.addEventListener("input", function(e) {
+                // Get the entered value
+                let inputValue = e.target.value;
+
+                // Remove any non-numeric characters
+                inputValue = inputValue.replace(/[^\d+]/g, '');
+
+                // Update the input field value with only numeric characters
+                e.target.value = inputValue;
+                // Get the selected country's data
+            });
+
+            $.validator.addMethod("matchCountryCode", function(value, element) {
+                // Get the selected country's dial code
+                const selectedCountryData = primaryNumItt.getSelectedCountryData();
+                const countryCode = selectedCountryData.dialCode;
+
+                // Remove any non-numeric characters from the entered mobile number
+                const sanitizedMobileNumber = value.replace(/\D/g, '');
+
+                // Check if the mobile number starts with the country code
+                return sanitizedMobileNumber.startsWith(countryCode);
+            }, "Mobile number must match the selected country code.");
+
+
         }else if(editbtnId == "edit-whatsappNum"){
             $('#popupView').show('slow');
 
-            $('#editEmail').hide();
-            $('#editPrimaryMobNum').hide();
-            $('#editWhatsappNum').show();
+            document.getElementById('update-number').innerHTML = `
+                <div id="editWhatsappNum" class="form-field edit-field mb-3">
+                <label for="whatsappNum">Whatsapp Number :</label>
+                <input type="tel" name="whatsappNum" id="whatsappNum" class="" placeholder="Enter whatsapp Number">
+                </div>`;
+
+                const whatsappNum = document.querySelector("#whatsappNum");
+                const whatsappNumItt = window.intlTelInput(whatsappNum, {
+                    initialCountry: "in",
+                    nationalMode: false,
+                    separateDialCode: true,
+                    showSelectedDialCode: false,
+                    utilsScript: "./assets/js/utils.min.js?1714035314356"
+
+                }); 
+                // Get the input field and initialize the intlTelInput instance
+                whatsappNum.addEventListener("input", function(e) {
+                    // Get the entered value
+                    let inputValue = e.target.value;
+
+                    // Remove any non-numeric characters
+                    inputValue = inputValue.replace(/[^\d+]/g, '');
+
+                    // Update the input field value with only numeric characters
+                    e.target.value = inputValue;
+                    // Get the selected country's data
+                });
+                $.validator.addMethod("matchCountryCode", function(value, element) {
+                    // Get the selected country's dial code
+                    const selectedCountryData = whatsappNumItt.getSelectedCountryData();
+                    const countryCode = selectedCountryData.dialCode;
+
+                    // Remove any non-numeric characters from the entered mobile number
+                    const sanitizedMobileNumber = value.replace(/\D/g, '');
+
+                    // Check if the mobile number starts with the country code
+                    return sanitizedMobileNumber.startsWith(countryCode);
+                }, "Mobile number must match the selected country code.");
         }else if(editbtnId == "edit-email"){
             $('#popupView').show('slow');
-
-            $('#editPrimaryMobNum').hide();
-            $('#editWhatsappNum').hide();
-            $('#editEmail').show();
+            document.getElementById('update-number').innerHTML = `
+                <div id="editEmail" class="form-field edit-field mb-3">
+                <label for="email">Email ID :</label>
+                <input type="text" name="email" id="email" class="" placeholder="Enter email">
+                </div>`;
         }else{
             console.log("Something Wrong!");
-        }
+        }        
     });
     $(".close-btn").click(function(){
         $('#popupView').hide('slow');
+    });
+
+    //update contact info
+    $('#update_contactInfo').validate({
+        rules: {
+            primaryMobNum: {
+                required: true,
+                matchCountryCode: true
+                // Add more rules as needed
+            },
+            whatsappNum: {
+                required: true,
+                matchCountryCode: true
+                // Add more rules as needed
+            },
+            email: {
+                required: true,
+                email: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/i
+            }
+            // Add more fields and their validation rules as needed
+        },
+        messages: {
+            primaryMobNum: {
+                required: "Please enter your primary mobile number",
+                matchCountryCode: "Mobile number must match the selected country code."
+                // Add more messages for specific rules as needed
+            },
+            whatsappNum: {
+                required: "Please enter your whatsapp number",
+                matchCountryCode: "Mobile number must match the selected country code."
+                // Add more messages for specific rules as needed
+            },
+            email: {
+                required: "Please enter your email",
+                email: "Please enter a valid email address" // Message for invalid email
+            }
+            // Add more messages for other fields as needed
+        },
+        submitHandler: function(form) {
+            // If form is valid, handle submission here
+            // You can access the values of fields using jQuery
+            var primaryMobNum = $('#primaryMobNum').val();
+            var whatsappNum = $('#whatsappNum').val();
+            var email = $('#email');
+
+            $(".spinner-gif").show();
+            setTimeout(function() {
+                $(".spinner-gif").hide();
+                $(".success-msg").show();
+                // Hide the success message after 2 seconds
+                setTimeout(function() {
+                    $(".success-msg").hide();
+                    $('#popupView').hide('slow')
+                }, 2000);
+            }, 2000);
+        },
     });
 
     /* Sent OTP Button */
@@ -515,60 +694,9 @@ if (window.location.href === homePage && indexPage) {
         // Check if the submit button is enabled
         if ($(this).prop('disabled') === false) {
             // Redirect the user to the desired page
-            window.location.href = "http://localhost/projects/BellsNRings/detail-form.html";
+            window.location.href = "https://mvgdigital.com/bellsnrings/detail-form.html";
         }
     });
-
-    // Initialize intlTelInput after the document is loaded
-    const primaryNum = document.querySelector("#primaryMobNum");
-    const primaryNumItt = window.intlTelInput(primaryNum, {
-        initialCountry: "in",
-        nationalMode: false,
-        separateDialCode: true,
-        showSelectedDialCode: false,
-        utilsScript: "./assets/js/utils.min.js?1714035314356"
-    });
-    primaryNum.addEventListener("input", function(e) {
-        // Get the entered value
-        let inputValue = e.target.value;
-    
-        // Remove any non-numeric characters
-        inputValue = inputValue.replace(/\D/g, '');
-    
-        // Update the input field value with only numeric characters
-        e.target.value = inputValue;
-        // Get the selected country data
-        const selectedCountryData = primaryNumItt.getSelectedCountryData();
-        const countryCode = selectedCountryData.dialCode;
-
-        // Validate the phone number based on the selected country code
-        const isValid = primaryNumItt.isValidNumber();
-        if (!isValid) {
-            // If the number is not valid, you can display an error message or handle it as needed
-            alert('Please enter a valid phone number for ' + countryCode);
-        }
-    });
-
-    // Initialize intlTelInput after the document is loaded
-    const whatsappNum = document.querySelector("#whatsappNum");
-    const whatsappNumIti = window.intlTelInput(whatsappNum, {
-        initialCountry: "in",
-        nationalMode: false,
-        separateDialCode: true,
-        showSelectedDialCode: false,
-        utilsScript: "./assets/js/utils.min.js?1714035314356"
-    });
-    whatsappNum.addEventListener("input", function(e) {
-        // Get the entered value
-        let inputValue = e.target.value;
-    
-        // Remove any non-numeric characters
-        inputValue = inputValue.replace(/\D/g, '');
-    
-        // Update the input field value with only numeric characters
-        e.target.value = inputValue;
-    });
-/* const countryData = iti.getSelectedCountryData(); */
     
 }else if (window.location.href === detailPage) {
     // Detailde Form Js
@@ -643,7 +771,7 @@ if (window.location.href === homePage && indexPage) {
             $("#brother-married-field").show();
             addmarriedBrotherscol.innerHTML = `
                 <div class="form-field mb-3">
-                    <label for="brotherMarried">Brothers Married :</label>
+                    <label for="brotherMarried">Brothers Married <span class="requirdField" >*</span></label>
                     <select id="brotherMarried" name="brotherMarried" class="form-select">
                         <option value="no" selected>No</option>
                         <option value="1">1</option>
@@ -691,7 +819,7 @@ if (window.location.href === homePage && indexPage) {
             $("#sister-married-field").show();
             addmarriedSisterscol.innerHTML = `
                 <div class="form-field mb-3">
-                    <label for="sisterMarried">Sisters Married :</label>
+                    <label for="sisterMarried">Sisters Married <span class="requirdField" >*</span></label>
                     <select id="sisterMarried" name="sisterMarried" class="form-select">
                         <option value="no" selected>No</option>
                         <option value="1">1</option>
@@ -719,7 +847,7 @@ if (window.location.href === homePage && indexPage) {
             $('#addNewAddress').show();
             document.getElementById('addNewAddress').innerHTML = `
                 <div class="form-field mb-3">
-                    <label for="permAddress">Permanent Address:</label>
+                    <label for="permAddress">Permanent Address <span class="requirdField" >*</span></label>
                     <textarea id="permAddress" class="address" name="permAddress"></textarea>
                 </div>`;
         } else {
@@ -729,35 +857,6 @@ if (window.location.href === homePage && indexPage) {
             document.getElementById('addNewAddress').innerHTML = '';
         }
     });
-    
-
-    /* var suggestedLocations = [
-        "Chennai, Tamil Nadu, India",
-        // Add more suggested locations here
-    ];
-
-    // Initialize Autocomplete widget
-    $("#work_location").autocomplete({
-        source: suggestedLocations
-    }); */
-
-    //Work location Suggetions Code 
-    /* var autocompleteService = new google.maps.places.AutocompleteService();
-
-    $("#work_location").autocomplete({
-        source: function(request, response) {
-            autocompleteService.getPlacePredictions({ input: request.term }, function(predictions, status) {
-                if (status == google.maps.places.PlacesServiceStatus.OK) {
-                    var suggestions = predictions.map(function(prediction) {
-                        return prediction.description;
-                    });
-                    response(suggestions);
-                } else {
-                    response([]);
-                }
-            });
-        }
-    }); */
 
     $("#multi-step-form").validate({
         rules: {
@@ -837,7 +936,7 @@ if (window.location.href === homePage && indexPage) {
                 required: true
             },
             imag: {
-                required: true
+                required: false
             },
             
             
@@ -919,7 +1018,7 @@ if (window.location.href === homePage && indexPage) {
                 required: "This field is required."
             },
             imag: {
-                required: "This field is required."
+                required: false
             },
         },
         errorElement: 'label',
@@ -1035,18 +1134,37 @@ if (window.location.href === homePage && indexPage) {
             };
             function changeSvgColor() {
                 var progressPercentage = ((currentStep - 1) / 2) * 100;
-                if (progressPercentage === 50) {
+                if (progressPercentage === 0) {
+                    // Change icon color here
+                    $(".progress-step-1").css('font-weight', "600");
+                    $(".progress-step-2").css('font-weight', "500");
+                    $(".progress-step-3").css('font-weight', "500");
+                    
+                }if (progressPercentage === 50) {
                     // Change icon color here
                     $(".step2-circle svg path").css("fill", "#DC75B0"); 
                     $(".step3-circle svg path").css("fill", "");
+                    $(".progress-step-1").css('font-weight', "500");
+                    $(".progress-step-2").css('font-weight', "600");
+                    $(".progress-step-3").css('font-weight', "500");
                 }else if(progressPercentage === 100) {
                     // Change icon color here
+                    $(".progress-step-1").css('font-weight', "500");
+                    $(".progress-step-2").css('font-weight', "500");
+                    $(".progress-step-3").css('font-weight', "600");
                     $(".step3-circle svg path").css("fill", "#DC75B0"); // Replace "#DC75B0" with your desired color
                 } else {
                     // Reset icon color if progress bar width is not 50%
                     $(".step-circle svg path").css("fill", ""); // Reset color to 
                 }
             }
+        
+            /* var currentWidth = $(window).width();
+                if(currentWidth < 600){
+                    
+                }else{
+                    console.log('wrong!');
+                } */
             // Call updateProgressBar function initially
             updateProgressBar();
 
@@ -1058,7 +1176,10 @@ if (window.location.href === homePage && indexPage) {
                 } else {
                     let val = this.value;
                     val = val.replace(/,/g, "");
-                    if (val.length > 3) {
+                    if (val.length === 1 && val === '0') {
+                        e.preventDefault();
+                        return;
+                    }else if (val.length > 3) {
                         let noCommas = Math.ceil(val.length / 3) - 1;
                         let remain = val.length - noCommas * 3;
                         let newVal = [];
@@ -1131,6 +1252,9 @@ if (window.location.href === homePage && indexPage) {
             
 }else if (window.location.href === successPage){
 
+    $("#nav-to-detailForm").click(function(){
+        window.location.href = "https://mvgdigital.com/bellsnrings/success.html";
+    })
 }else{
 alert("Page not Found!")
 }

@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
 
 /* var homePage = "https://mvgdigital.com/bellsnrings/";
@@ -18,6 +19,7 @@ var usersPage = "http://localhost/projects/BellsNRings/users.html";
 var userDetailsPage = "http://localhost/projects/BellsNRings/user_details.html";
 var generateQRPage =  "http://localhost/projects/BellsNRings/generate_qr.html";
 var settingsPage = "http://localhost/projects/BellsNRings/settings.html";
+
 
 
 
@@ -1297,6 +1299,9 @@ if (window.location.href === homePage && indexPage) {
         this.querySelector('.fa').classList.toggle('fa-eye');
     });
 
+    $('#password').on('input', function() {
+        $('#passwordError').hide();
+    });
     //Login Page validations
     $("#loginForm").validate({
         rules: {
@@ -2235,6 +2240,14 @@ if (window.location.href === homePage && indexPage) {
         // Redirect to the login page
         window.location.href = 'login.html'; // Replace 'login.html' with the actual URL of the login page
     });
+
+    //Side Nav
+    let btn = document.querySelector("#menu-btn");
+    let sidebar = document.querySelector(".sidebar");
+
+    btn.onclick = () => {
+    sidebar.classList.toggle('active');
+    };
 
     $('#generatePassword').submit(function(event) {
         event.preventDefault(); // Prevent the default form submission

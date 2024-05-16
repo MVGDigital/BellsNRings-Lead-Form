@@ -318,15 +318,6 @@ $("#state").on("change", function() {
     console.log(selectedState);
 });
 
-/* countryElement.onchange = function () {
-    console.log(countryElement.value);
-    if(countryElement.value == ""){
-        $("#country-error").show();
-    }else{
-        $("#country-error").hide();
-    }
-    populateStates(countryElementId, stateElementId);
-}; */
 
 
 

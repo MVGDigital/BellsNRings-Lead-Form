@@ -60,17 +60,7 @@ if (window.location.href === homePage && indexPage) {
         var onloadCallback = function() {
             alert("grecaptcha is ready!");
         };
-        // Whatsapp Number Below Is - Change event
-        $('input[name="addWhatsappNum"]').change(function() {
-            // Get the value of the selected radio button
-            var selectedValue = $('input[name="addWhatsappNum"]:checked').val();
-            if(selectedValue == 'differentNumber'){
-                $('#addNewNumber').show()
-            }else{
-                $('#addNewNumber').hide()
-            }
-        });
-
+        
     // Initialize intlTelInput after the document is loaded
     const mobNumber = document.querySelector(".mob_number");
     const primaryNum = document.querySelector("#primaryMobNum");
@@ -1388,98 +1378,56 @@ if (window.location.href === homePage && indexPage) {
     };
 
     //Chart js Code
-    let width, height, gradient;
-    function getGradient(ctx, chartArea) {
-        const chartWidth = chartArea.right - chartArea.left;
-        const chartHeight = chartArea.bottom - chartArea.top;
-        if (!gradient || width !== chartWidth || height !== chartHeight) {
-        // Create the gradient because this is either the first render
-        // or the size of the chart has changed
-        width = chartWidth;
-        height = chartHeight;
-        gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
-        gradient.addColorStop(0, 'red');
-        gradient.addColorStop(0.5, 'yellow');
-        gradient.addColorStop(1, 'green');
+
+    //Setup
+    // Utility functions and constants
+    // Utility functions and constants
+    const Utils = {
+        CHART_COLORS: {
+            green: 'rgb(75, 192, 192)',
+            orange: 'rgb(255, 159, 64)',
+            yellow: 'rgb(255, 205, 86)',
+            blue: 'rgb(54, 162, 235)',
+            purple: 'rgb(153, 102, 255)',
+            red: 'rgb(255, 99, 132)',
+           
+            
         }
+    };
 
-        return gradient;
-    }
+    // Data values
+    const dataValues = [300, 20, 30, 40, 50, 60];  // Example data values
 
-    const DATA_COUNT = 7;
-    const NUMBER_CFG = {count: DATA_COUNT, min: -100, max: 100};
-    const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     const data = {
-        labels: labels,
+        labels: ['Active', 'Ready', 'Unverified', 'Trash', 'Settled', 'Delete'],  // Updated labels
         datasets: [
-        {
-            label: 'Dataset 1',
-            data: [0, 20, 30, 40, -10, 25, 50 , 50, 0, 30],
-            borderColor: function(context) {
-            const chart = context.chart;
-            const {ctx, chartArea} = chart;
-
-            if (!chartArea) {
-                // This case happens on initial chart load
-                return;
+            {
+                label: 'Dataset 1',
+                data: dataValues,  // Set data using array
+                backgroundColor: Object.values(Utils.CHART_COLORS),
             }
-            return getGradient(ctx, chartArea);
-            },
-        },
         ]
     };
 
+    // Config
     const config = {
-        type: 'line',
+        type: 'pie',
         data: data,
         options: {
-        responsive: true,
-        plugins: {
-            legend: {
-            position: 'top',
-            },
-        }
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Registered Counts'
+                }
+            }
         },
     };
 
-    const actions = [
-        {
-        name: 'Randomize',
-        handler(chart) {
-            chart.data.datasets.forEach(dataset => {
-            dataset.data = [-50, 20, 30, 40, -10, 25, 50].map(() => Utils.rand(-100, 100));
-            });
-            chart.update();
-        }
-        },
-        {
-        name: 'Add Data',
-        handler(chart) {
-            const data = chart.data;
-            if (data.datasets.length > 0) {
-            data.labels.push('New Month');
-
-            for (let index = 0; index < data.datasets.length; ++index) {
-                data.datasets[index].data.push(Utils.rand(-100, 100));
-            }
-
-            chart.update();
-            }
-        }
-        },
-        {
-        name: 'Remove Data',
-        handler(chart) {
-            chart.data.labels.pop(); // remove the label first
-
-            chart.data.datasets.forEach(dataset => {
-            dataset.data.pop();
-            });
-
-            chart.update();
-        }
-        }
-    ];
+    // Initialize the chart
     const myChart = new Chart(
         document.getElementById('myChart'),
         config
@@ -1597,8 +1545,11 @@ if (window.location.href === homePage && indexPage) {
                             { data: 'mother_occupation' },
                             { data: 'family_status' },
                             { data: 'number_of_brothers' },
+                            { data: 'brothers_married' },
                             { data: 'number_of_sisters' },
+                            { data: 'sisters_married' },
                             { data: 'address' },
+                            { data: 'perm_address' },
                             { data: 'citizen_of' },
                             { 
                                 data: 'photo',
@@ -1689,8 +1640,11 @@ if (window.location.href === homePage && indexPage) {
                 "mother_occupation": '',
                 "family_status": '',
                 "number_of_brothers": '',
+                "brothers_married": '',
                 "number_of_sisters": '',
+                "sisters_married": '',
                 "address": '',
+                "perm_address": '',
                 "citizen_of": '',
                 "photo": ''
             }).draw(true);
@@ -1708,9 +1662,6 @@ if (window.location.href === homePage && indexPage) {
         var date_of_birth = rowData.date_of_birth;
         var currently_residing_in_country = rowData.currently_residing_in_country;
         var currently_residing_in_state = rowData.currently_residing_in_state;
-    
-      
-
         var email_id = rowData.email_id;
         var primary_contact_number = rowData.primary_contact_number;
         var whatsapp_number = rowData.whatsapp_number;
@@ -1732,8 +1683,11 @@ if (window.location.href === homePage && indexPage) {
         var mother_occupation = rowData.mother_occupation;
         var family_status = rowData.family_status;
         var number_of_brothers = rowData.number_of_brothers;
+        var brother_marrital_status = rowData.brothers_married;  
+        var sister_marrital_status = rowData.sisters_married;
         var number_of_sisters = rowData.number_of_sisters;
         var address = rowData.address;
+        var perm_address = rowData.perm_address;
         var citizen_of = rowData.citizen_of;
         var photoUpload = rowData.photo;
 
@@ -1765,8 +1719,11 @@ if (window.location.href === homePage && indexPage) {
         $('#editMotherOccupation').val(mother_occupation);
         $('#editFamilyStatus').val(family_status.toLowerCase());
         $('#editBrothers').val(number_of_brothers.toLowerCase());
+        $('#editBrotherMarried').val(brother_marrital_status.toLowerCase());
         $('#editSisters').val(number_of_sisters.toLowerCase());
+        $('#editSisterMarried').val(sister_marrital_status.toLowerCase());
         $('#editAddress').val(address);
+        $('#editPermAddress').val(perm_address);
         $('#editCitizenOf').val(citizen_of);
         $('#editphoto').val();
         
@@ -1884,6 +1841,129 @@ if (window.location.href === homePage && indexPage) {
             autoclose: true,
             //todayHighlight: true
         });
+
+        // Event listener for changes in radio buttons
+        const primaryNum = document.querySelector("#editPrimaryContact");
+        const primaryNumItt = window.intlTelInput(primaryNum, {
+            initialCountry: "in",
+            nationalMode: false,
+            separateDialCode: true,
+            showSelectedDialCode: true,
+            utilsScript: "./assets/js/utils.min.js?1714035314356"
+        });
+
+        // Get the input field and initialize the intlTelInput instance
+        primaryNum.addEventListener("input", function(e) {
+            // Get the entered value
+            let inputValue = e.target.value;
+        
+            // Remove any non-numeric characters
+            inputValue = inputValue.replace(/[^\d+]/g, '');
+        
+            // Update the input field value with only numeric characters
+            e.target.value = inputValue;
+            // Get the selected country's data
+        });
+        const whatsappNum = document.querySelector("#editWhatsapp");
+        const whatsappNumItt = window.intlTelInput(whatsappNum, {
+            initialCountry: "in",
+            nationalMode: false,
+            separateDialCode: true,
+            showSelectedDialCode: true,
+            utilsScript: "./assets/js/utils.min.js?1714035314356"
+
+        }); 
+        // Get the input field and initialize the intlTelInput instance
+        whatsappNum.addEventListener("input", function(e) {
+            // Get the entered value
+            let inputValue = e.target.value;
+        
+            // Remove any non-numeric characters
+            inputValue = inputValue.replace(/[^\d+]/g, '');
+        
+            // Update the input field value with only numeric characters
+            e.target.value = inputValue;
+            // Get the selected country's data
+        });
+
+        // Annual Income Code
+        $(document).on("input keyup", ".price-format-input", function (e) {
+            // Allow only numbers and certain control keys (e.g., backspace, delete)
+            if (e.type === "keypress" && (e.which < 48 || e.which > 57)) {
+                e.preventDefault();
+                return;
+            }
+
+            let val = this.value.replace(/,/g, "");
+
+            // Prevent leading zero
+            if (val.length === 1 && val === '0') {
+                e.preventDefault();
+                return;
+            }
+
+            // Format with commas according to Indian numbering system
+            if (val.length > 3) {
+                let lastThree = val.substring(val.length - 3);
+                let otherNumbers = val.substring(0, val.length - 3);
+                if (otherNumbers !== '') {
+                    lastThree = ',' + lastThree;
+                }
+                let formattedValue = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+                this.value = formattedValue;
+            } else {
+                this.value = val;
+            }
+
+            // Update text below the input field with the amount in words
+            let amountInText = convertToIndianWords(val.replace(/,/g, ''));
+            $("#textBelowIncome").text(" " + amountInText);
+
+            // Hide textBelowIncome if annual_income is empty
+            if ($(this).val() === '') {
+                $("#textBelowIncome").hide();
+            } else {
+                $("#textBelowIncome").show();
+            }
+        });
+
+        // Function to convert a number to words in the Indian numbering system
+        function convertToIndianWords(num) {
+            const ones = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+            const tens = ['Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+            const higher = ['Thousand', 'Lakh', 'Crore'];
+
+            if (num === '0') return 'Zero';
+            
+            function getBelowThousand(n) {
+                if (n < 20) return ones[n];
+                if (n < 100) return tens[Math.floor(n / 10) - 2] + (n % 10 ? ' ' + ones[n % 10] : '');
+                return ones[Math.floor(n / 100)] + ' Hundred' + (n % 100 ? ' ' + getBelowThousand(n % 100) : '');
+            }
+
+            let result = '';
+            let n = parseInt(num, 10);
+            
+            if (n >= 10000000) {
+                result += getBelowThousand(Math.floor(n / 10000000)) + ' Crore ';
+                n = n % 10000000;
+            }
+            if (n >= 100000) {
+                result += getBelowThousand(Math.floor(n / 100000)) + ' Lakh ';
+                n = n % 100000;
+            }
+            if (n >= 1000) {
+                result += getBelowThousand(Math.floor(n / 1000)) + ' Thousand ';
+                n = n % 1000;
+            }
+            if (n > 0) {
+                result += getBelowThousand(n);
+            }
+            
+            return result.trim();
+        }
+        // Set focus on the annual_income input field
+        $("#editAnnualIncome").focus();
 
         //Image Upload Code
         function readURL(input, imgControlName) {
@@ -2196,18 +2276,18 @@ if (window.location.href === homePage && indexPage) {
     });
     
     /*QR Code Details*/
-    // Get the current year
-    const currentYear = new Date().getFullYear();
-    // Select the dropdown element
-    const $pastYearSelect = $('#pastYearSelect');
-    // Populate the dropdown with past years (from the current year to the last year)
-    for (let i = currentYear; i >= (currentYear - 7); i--) {
-         $pastYearSelect.append($('<option>', {
-             value: i,
-             text: i
-        }));
-     };
-    // Function to search by event name
+        // Get the current year
+        const currentYear = new Date().getFullYear();
+        // Select the dropdown element
+        const $pastYearSelect = $('#pastYearSelect');
+        // Populate the dropdown with past years (from the current year to the last year)
+        for (let i = currentYear; i >= (currentYear - 7); i--) {
+            $pastYearSelect.append($('<option>', {
+                value: i,
+                text: i
+            }));
+        };
+        // Function to search by event name
         $('#searchBox').keyup(function() {
             var searchText = $(this).val().toUpperCase();
             $('.event-info').each(function() {
@@ -2219,6 +2299,36 @@ if (window.location.href === homePage && indexPage) {
                 }
             });
         });
+
+        // Image Download 
+        $('.downEventQR').click(function() {
+            const closestQRCodeImg = $(this).closest('.downQR-eventImg').find('.qrCodeImg');
+            const imgSrc = closestQRCodeImg.attr('src');
+            const link = document.createElement('a');
+            link.href = imgSrc;
+            link.download = 'qrcode.png';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          });
+
+          $(".event-copyButton").click(function() {
+            const closestQRCodeURL = $(this).closest('.copy-eventUrl').find('.event-qrcodeURL');
+            const qrcodeURL = closestQRCodeURL.text();
+          
+            navigator.clipboard.writeText(qrcodeURL)
+              .then(() => {
+                $(this).siblings('.event-copyHint').addClass("show"); // Show the hint
+                setTimeout(() => {
+                  $(this).siblings('.event-copyHint').removeClass("show"); // Hide the hint after 2 seconds
+                }, 500);
+              })
+              .catch(err => {
+                console.error('Error copying URL to clipboard:', err);
+              });
+          });
+
+        
 }else if (window.location.href === settingsPage){
     //Settings Page Validation
 

@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="./assets/datatables/dataTables.dataTables.css">
     <link rel="stylesheet" href="./assets/css/fixedColumns.dataTables.css">
     <link rel="stylesheet" href="./assets/datatables/DateTime-1.5.2/css/dataTables.dateTime.min.css">
+    <link rel="stylesheet" href="./assets/css/intlTelInput.min.css">
     <link rel="stylesheet" href="./assets/css/custom.css">
     
     
@@ -152,8 +153,11 @@
                                     <th>Mother Occupation</th>
                                     <th>Family Status</th>
                                     <th>No. of Brother</th>
+                                    <th>Brothers Marrital Status</th>
                                     <th>No. of Sister</th>
+                                    <th>Sisters Marrital Status</th>
                                     <th>Address</th>
+                                    <th>Permanant Address</th>
                                     <th>Citizen of</th>
                                     <th>Photo</th>
                                     <th>Status</th>
@@ -555,11 +559,11 @@
                                             </div>
                                         </div>
                                         <div class="col-12 col-lg-6 col-md-6 col-sm-12 mb-3">
-                                        <div class="form-field">
-                                            <label for="editLastEducation">Last Education Level</label>
-                                            <input type="text" id="editLastEducation" name="editLastEducation" placeholder="Enter Last education level">
+                                            <div class="form-field">
+                                                <label for="editLastEducation">Last Education Level</label>
+                                                <input type="text" id="editLastEducation" name="editLastEducation" placeholder="Enter Last education level">
+                                            </div>
                                         </div>
-                                    </div>
                                     <div class="col-12 col-lg-6 col-md-6 col-sm-12 mb-3">
                                         <div class="form-field">
                                             <label for="editOccupation">Occupation</label>
@@ -622,59 +626,92 @@
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-6 col-md-6 col-sm-12 mb-3">
-                                    <div class="form-field">
-                                        <label for="editBrothers">No. of Brothers</label>
-                                        <select id="editBrothers" name="editBrothers" class="form-select" >
-                                            <option value="none">None</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
+                                        <div class="form-field">
+                                            <label for="editBrothers">No. of Brothers</label>
+                                            <select id="editBrothers" name="editBrothers" class="form-select" >
+                                                <option value="none">None</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6 col-md-6 col-sm-12 mb-3">
+                                        <div class="form-field">
+                                            <label for="editBrotherMarried">Brothers Married</label>
+                                            <select id="editBrotherMarried" name="editBrotherMarried" class="form-select">
+                                                <option value="none">None</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
                                             </select>
+                                        </div>
                                     </div>
-                                </div>
-                                
-                                <div class="col-12 col-lg-6 col-md-6 col-sm-12 mb-3">
-                                    <div class="form-field">
-                                        <label for="editSisters">No. of Sisters</label>
-                                        <select id="editSisters" name="editSisters" class="form-select">
-                                            <option value="none">None</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
+                                    <div class="col-12 col-lg-6 col-md-6 col-sm-12 mb-3">
+                                        <div class="form-field">
+                                            <label for="editSisters">No. of Sisters</label>
+                                            <select id="editSisters" name="editSisters" class="form-select">
+                                                <option value="none">None</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
                                             </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-12 col-lg-6 col-md-6 col-sm-12 mb-3">
-                                    <div class="form-field">
-                                        <label for="editAddress">Address</label>
-                                        <textarea id="editAddress" name="editAddress" class="address"></textarea>
+                                    <div class="col-12 col-lg-6 col-md-6 col-sm-12 mb-3">
+                                        <div class="form-field mb-3">
+                                            <label for="editSisterMarried">Sisters Married</label>
+                                            <select id="editSisterMarried" name="editSisterMarried" class="form-select">
+                                                <option value="none">None</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-12 col-lg-6 col-md-6 col-sm-12 mb-3">
-                                    <div class="form-field">
-                                        <label for="editCitizenOf">Citizen of</label>
-                                        <input type="text" id="editCitizenOf" name="editCitizenOf" placeholder="Enter citizen of">
+                                    <div class="col-12 col-lg-6 col-md-6 col-sm-12 mb-3">
+                                        <div class="form-field">
+                                            <label for="editAddress">Address</label>
+                                            <textarea id="editAddress" name="editAddress" class="address"></textarea>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-12 col-lg-6 col-md-6 col-sm-12 mb-3">
-                                    <div class="form-field">
-                                        <label for="editphoto">Need to upload your recent photo</label>
-                                        <div class="img-upload">
-                                            <span class="btn_upload">
-                                                <input type="file" id="editphoto" name="editphoto" class="input-img"/>
-                                                Choose Image
-                                                </span>
-                                            <img id="ImgPreview" src="" class="preview1" />
-                                            <input type="button" id="removeImage1" value="" class="btn-rmv1" />
-                                            </div>
+                                    <div class="col-12 col-lg-6 col-md-6 col-sm-12 mb-3">
+                                        <div class="form-field mb-3">
+                                            <label for="editPermAddress">Permanent Address</label>
+                                            <textarea id="editPermAddress" class="address" name="editPermAddress"></textarea>
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="col-12 col-lg-6 col-md-6 col-sm-12 mb-3">
+                                        <div class="form-field">
+                                            <label for="editCitizenOf">Citizen of</label>
+                                            <input type="text" id="editCitizenOf" name="editCitizenOf" placeholder="Enter citizen of">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6 col-md-6 col-sm-12 mb-3">
+                                        <div class="form-field">
+                                            <label for="editphoto">Need to upload your recent photo</label>
+                                            <div class="img-upload">
+                                                <span class="btn_upload">
+                                                    <input type="file" id="editphoto" name="editphoto" class="input-img"/>
+                                                    Choose Image
+                                                    </span>
+                                                <img id="ImgPreview" src="" class="preview1" />
+                                                <input type="button" id="removeImage1" value="" class="btn-rmv1" />
+                                                </div>
+                                        </div>
+                                    </div>
                                 
                                     </div>
                                     <div class="modal-footer">
@@ -697,6 +734,7 @@
 
 
     <!-- plugin Files -->
+    <script src="./assets/js/intlTelInput.min.js"></script>
     <script src="./assets/js/jquery-3.7.1.min.js"></script>
     <script src="./assets/bootstrap-5.0.2/js/bootstrap.min.js"></script>
     <script src="./assets/js/bootstrap-datepicker.min.js"></script>

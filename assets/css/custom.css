@@ -1114,9 +1114,6 @@ label[for="state"]#state-error {
     font-size: 24px;
     font-family: 'NotoSans-SemiBold';
 }
-#myChart{
-    width: 100%!important;
-}
 .count-cercle{
     height: 170px;
     width: 170px;
@@ -1142,10 +1139,16 @@ label[for="state"]#state-error {
 }
 /* Chart Code */
 .chart-container{
-    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0px 4px 20px 0px #5B47BC4D;
+}
+#myChart{
+  height: auto !important;
+  width: 50% !important;
 }
 .dash_content h6{
     font-size: 23px;
@@ -1388,6 +1391,13 @@ table.dataTable > thead > tr > th{
     border: none;
     padding: 0;
     background: transparent;
+  }
+  .modal{
+    background-color: #7f7f7f8f;
+  }
+  .modal-backdrop{
+    z-index: -2;
+    background-color: transparent;
   }
   .modal-body{
     width: 100%;
@@ -1735,6 +1745,7 @@ table.dataTable > thead > tr > th{
     flex-direction: column;
     justify-content: space-around;
 }
+
 .eventImg-info img{
     cursor: pointer;
 }
@@ -1745,23 +1756,55 @@ table.dataTable > thead > tr > th{
     font-family: 'NotoSans-Bold';
 }
 .goToDetail-Table{
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     background-color: #FFF;
     border-radius: 50%;
     position: absolute;
-    right: -8%;
+    right: -5%;
     top: 16%;
     display: flex;
-    padding: 30px;
+    padding: 20px;
     cursor: pointer;
     transition: padding 0.3s ease;
     box-shadow: 4px 1px 4px 0px #00000040;
 }
 .goToDetail-Table:hover{
-    padding: 20px;
+    padding: 10px;
+}
+.downQR-eventImg{
+  position: relative;
+}
+.downQR-eventImg .qrCodeImg{
+  width: 22%;
+  opacity: 0;
+}
+.downEventQR{
+  background: none;
+  border: none;
+  left: 0;
+  position: absolute;
+  top: 0;
 }
 
+.event-copyHint {
+  position: absolute;
+  bottom: 0;
+  transform: translateY(100%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: transform 0.9s ease, opacity 0.3s ease; /* Added opacity transition */
+  opacity: 0; /* Initially hidden */
+}
+.event-copyHint.show {
+  transform: translateY(-20px); /* Move up */
+  opacity: 1; /* Show with fade-in effect */
+}
+.event-qrcodeURL{
+  display: none;
+}
 /* Settings Page */
 #generatePassword label.error{
     margin-bottom: 0!important;
@@ -1777,7 +1820,10 @@ table.dataTable > thead > tr > th{
     color: #17c008!important;
     text-transform: math-auto!important;
 }
-
+.event-copyButton{
+  border: none;
+  background: none;
+}
 /* ====================== Admin Flow Code =================== */
 
 /* Media Query's */
@@ -1863,10 +1909,15 @@ table.dataTable > thead > tr > th{
     }
     .dash_content{
       padding-top: 30px;
+      padding-bottom: 30px;
     }
     .selectYear{
       flex-wrap: wrap;
       width: 45%;
+    }
+    #myChart{
+      height: auto !important;
+      width: 100% !important;
     }
     .qrField {
       width: 55%;

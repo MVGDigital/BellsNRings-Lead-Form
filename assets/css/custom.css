@@ -1882,6 +1882,9 @@ table.dataTable > thead > tr > th{
         border-top-left-radius: 50px;
         border-bottom-left-radius: 0px;
     }
+    .modal-dialog{
+      max-width: 70%!important;
+    }
 }
 @media only screen and (max-width: 768px){
     .bg-img-content {

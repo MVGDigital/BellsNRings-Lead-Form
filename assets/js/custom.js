@@ -2359,7 +2359,7 @@ if (window.location.href === homePage && indexPage) {
     sidebar.classList.toggle('active');
     };
 
-    $('#generatePassword').submit(function(event) {
+    /* $('#generatePassword').submit(function(event) {
         event.preventDefault(); // Prevent the default form submission
         
         // Validate the form
@@ -2368,15 +2368,9 @@ if (window.location.href === homePage && indexPage) {
             // For demonstration, we'll log a success message
             console.log("Form submitted successfully!");
             
-            // Show success message
-            $('.passwordUpdated').fadeIn();
             
-            // Hide success message after 4 seconds
-            setTimeout(function(){
-                $('.passwordUpdated').fadeOut();
-            }, 2000);
         }
-    });
+    }); */
 
     $.validator.addMethod("notEqualToOldPassword", function(value, element) {
         return value !== $("#old_password").val();
@@ -2420,6 +2414,25 @@ if (window.location.href === homePage && indexPage) {
                 minlength: "Password must be at least 8 characters long.",
                 maxlength: "Password must not exceed 14 characters."
             }
+        },
+        submitHandler: function(form) {
+            // Perform the form submission, for example with an AJAX request
+            $.ajax({
+                url: form.action,
+                type: form.method,
+                data: $(form).serialize(),
+                success: function(response) {
+                    // Show success message
+                    $('.passwordUpdated').fadeIn();
+                    
+                    // Hide success message after 4 seconds
+                    setTimeout(function(){
+                        // Clear the form fields
+                        form.reset();
+                        $('.passwordUpdated').fadeOut();
+                    }, 2000);
+                }
+            });
         }
     });
     /*  // Show success message

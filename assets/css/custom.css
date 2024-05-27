@@ -94,6 +94,22 @@
     align-items: center;
     justify-content:space-between;
 }
+.error {
+  border-color: red;
+}
+.hide {
+  display: none;
+}
+.valid-msg {
+  color: green!important;
+  font-size: 14px!important;
+  text-transform: inherit!important;
+}
+.error-msg {
+  color: #ff1d1d!important;
+  font-size: 14px!important;
+  text-transform: inherit!important;
+}
 label.error{
     color: #ff1d1d!important;
     font-size: 14px!important;
@@ -269,6 +285,9 @@ h4{
     cursor: pointer;
     background:#FFF!important;
 }
+/* .select2-container{
+  width: 100%!important;
+} */
 .select2-container--default .select2-selection--single{
     color: #666666;
     outline: #DC75B0;
@@ -426,6 +445,9 @@ label[for="state"]#state-error {
 }
 .iti__country.iti__highlight:hover .iti__dial-code{
     color: #FFFFFF!important;
+}
+.iti__selected-flag{
+  height: 38px;
 }
 /* .iti__country-container{
     background-color: #dc75b0;
@@ -887,7 +909,14 @@ label[for="state"]#state-error {
     font-size: 28px;
     margin-right: 5px;
   }
-  
+  #menu-btn span{
+    font-size: 16px;
+    font-weight: 600;
+    position: absolute;
+    bottom: 0;
+    left: 12%;
+    top: 50%;
+  }
   .logo_content .logo_name {
     font-size: 20px;
     font-weight: 400;
@@ -898,7 +927,7 @@ label[for="state"]#state-error {
     color: #150F0F;
     left: 50%;
     top: 6px;
-    font-size: 20px;
+    font-size: 30px;
     height: 50px;
     width: 50px;
     text-align: center;
@@ -1160,6 +1189,8 @@ label[for="state"]#state-error {
 }
 .selectYear label{
     width: 100%;
+    text-wrap: nowrap;
+    margin-right: 10px;
 }
 .card-item{
     display: flex;
@@ -1860,11 +1891,17 @@ table.dataTable > thead > tr > th{
     .bg-img-content{
         width: 20%;
     }
-    .otp-btn{
+    /* .otp-btn{
         right: 17%;
-    }
+    } */
 }
 @media only screen and (max-width: 1024px){
+  .bg-img{
+    height: 100vh;
+  }
+  .mandatoryForm-container{
+    height: 100vh;
+  }
   .modal-dialog{
     max-width: 70%!important;
   }
@@ -1872,6 +1909,9 @@ table.dataTable > thead > tr > th{
 @media only screen and (max-width: 992px){
     .ml_50{
         margin-left: 0;
+    }
+    #menu_title{
+      display: none;
     }
     .bg-img-content {
         width: auto;
@@ -1884,26 +1924,97 @@ table.dataTable > thead > tr > th{
         border-top-left-radius: 50px;
         border-bottom-left-radius: 0px;
     }
+    div.dt-container div.dt-search{
+      margin-top: 30px;
+    }
+    .searchField label{
+      width: 100%;
+    }
+    .generateQRTab{
+      width: 100%;
+    }
+    .generateQRTab .tab-button {
+      width: 30%;
+  }
 }
 @media screen and (min-device-width: 800px) and (max-device-width: 992px) { 
   /* STYLES HERE */
   .coutList{
     width: 40%;
   }
+  .sidebar{
+    width: 100px;
+    height: auto;
+    position: unset;
+  }
+  .sidebar.active{
+    width: 50%;
+    height: 100vh;
+    position: fixed;
+    z-index: 9;
+    border-radius: 0;
+  }
+  .nav_list{
+    display: none;
+  }
+  .sidebar.active .nav_list{
+    display: block;
+  }
+  .hide_nave{
+    display: block;
+  }
+  .dash_container{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0!important;
+  }
+  .sidebar #menu-btn{
+    left: 7%;
+  }
+  .sidebar.active ~ .dash_container{
+    width: 100%;
+  }
 }
 @media only screen and (max-width: 768px){
+  .sidebar{
+    width: 100px;
+    height: auto;
+    position: unset;
+  }
+  .sidebar.active{
+    width: 50%;
+    height: 100vh;
+    position: fixed;
+    z-index: 9;
+    border-radius: 0;
+  }
+  .nav_list{
+    display: none;
+  }
+  .sidebar.active .nav_list{
+    display: block;
+  }
+  .hide_nave{
+    display: block;
+  }
+  .dash_container{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0!important;
+  }
+  .sidebar #menu-btn{
+    left: 7%;
+  }
+  .sidebar.active ~ .dash_container{
+    width: 100%;
+  }
     .bg-img-content {
         margin: 25px 50px;
     }
     .container-space{
-        margin-right: 20px;
-        margin-left: 20px;
-    }
-    .container-space{
         margin: 0 20px;
-    }
-    .select2-container{
-        width: 100% !important;
     }
     .otp-btn {
         right: 5%;
@@ -1947,9 +2058,7 @@ table.dataTable > thead > tr > th{
     .generateQRTab{
       text-align: center;
     }
-    .generateQRTab .tab-button{
-      width: 75%;
-    }
+    
     .dt-length{
       float: left!important;
     }
@@ -2024,8 +2133,15 @@ table.dataTable > thead > tr > th{
     
 }
 @media only screen and (max-width: 480px){
+  
     .height100vh{
         height: auto!important;
+    }
+    .sidebar{
+      width: 70px;
+    }
+    .sidebar.active{
+      width: 100%;
     }
     .title h1{
         font-size: 20px;
@@ -2033,6 +2149,27 @@ table.dataTable > thead > tr > th{
     .mandatoryForm-container h5{
         font-size: 18px;
     }
+    .progress-container{
+      width: 100%;
+    }
+    .sidebar #menu-btn{
+      left: 10%;
+    }
+    .generateQRTab .tab-button{
+      width: 75%;
+    }
 }
 @media only screen and (max-device-width: 667px) and (orientation: landscape){}
 /* Media Query's */
+@media only screen and (max-width: 360px){
+  .navbar-brand{
+    margin-right: 0!important;
+  }
+  .bg-img-content{
+    margin: 25px;
+  }
+  .submit_btn{
+    margin: 0 20px;
+  }
+}
+

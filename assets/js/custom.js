@@ -1,14 +1,19 @@
 
 $(document).ready(function(){
 
-/* var homePage = "https://mvgdigital.com/bellsnrings/";
+var homePage = "https://mvgdigital.com/bellsnrings/";
 var indexPage = "https://mvgdigital.com/bellsnrings/index.html";
 var verifyOTPPage = "https://mvgdigital.com/bellsnrings/verify_otp.html";
 var detailPage = "https://mvgdigital.com/bellsnrings/detail_form.html";
 var successPage = "https://mvgdigital.com/bellsnrings/success.html";
-var loginPage = "https://mvgdigital.com/bellsnrings/login.html"; */
+var loginPage = "https://mvgdigital.com/bellsnrings/login.html";
+var dashboardPage = "https://mvgdigital.com/bellsnrings/dashboard.html";
+var usersPage = "https://mvgdigital.com/bellsnrings/users.html";
+var userDetailsPage = "https://mvgdigital.com/bellsnrings/user_details.html";
+var generateQRPage =  "https://mvgdigital.com/bellsnrings/generate_qr.html";
+var settingsPage = "https://mvgdigital.com/bellsnrings/settings.html";
 
-var homePage = "http://localhost/projects/BellsNRings/";
+/* var homePage = "http://localhost/projects/BellsNRings/";
 var indexPage = "http://localhost/projects/BellsNRings/index.html";
 var verifyOTPPage = "http://localhost/projects/BellsNRings/verify_otp.html";
 var detailPage = "http://localhost/projects/BellsNRings/detail_form.html";
@@ -18,9 +23,7 @@ var dashboardPage = "http://localhost/projects/BellsNRings/dashboard.html";
 var usersPage = "http://localhost/projects/BellsNRings/users.html";
 var userDetailsPage = "http://localhost/projects/BellsNRings/user_details.html";
 var generateQRPage =  "http://localhost/projects/BellsNRings/generate_qr.html";
-var settingsPage = "http://localhost/projects/BellsNRings/settings.html";
-
-
+var settingsPage = "http://localhost/projects/BellsNRings/settings.html"; */
 
 
 if (window.location.href === homePage && indexPage) {
@@ -62,7 +65,7 @@ if (window.location.href === homePage && indexPage) {
         };
         
     // Initialize intlTelInput after the document is loaded
-    const mobNumber = document.querySelector(".mob_number");
+    /* 
     const primaryNum = document.querySelector("#primaryMobNum");
     const primaryNumItt = window.intlTelInput(primaryNum, {
         initialCountry: "in",
@@ -70,32 +73,65 @@ if (window.location.href === homePage && indexPage) {
         separateDialCode: true,
         showSelectedDialCode: true,
         utilsScript: "./assets/js/utils.min.js?1714035314356"
-    });
+    }); */
+        const input = document.querySelector(".mob_number");
+        const errorMsg = document.querySelector("#error-msg");
+        const validMsg = document.querySelector("#valid-msg");
 
-    // Get the input field and initialize the intlTelInput instance
-    mobNumber.addEventListener("input", function(e) {
-        // Get the entered value
-        let inputValue = e.target.value;
-    
-        // Remove any non-numeric characters
-        inputValue = inputValue.replace(/[^\d+]/g, '');
-    
-        // Update the input field value with only numeric characters
-        e.target.value = inputValue;
-         // Get the selected country's data
-    });
+        const errorMap = ["Invalid number", "Invalid country code", "Entered mobile number is too short", "Entered mobile number is too long", "Invalid number"];
 
-    $.validator.addMethod("matchCountryCode", function(value, element) {
-        // Get the selected country's dial code
-        const selectedCountryData = primaryNumItt.getSelectedCountryData();
-        const countryCode = selectedCountryData.dialCode;
-    
-        // Remove any non-numeric characters from the entered mobile number
-        const sanitizedMobileNumber = value.replace(/\D/g, '');
-    
-        // Check if the mobile number starts with the country code
-        return sanitizedMobileNumber.startsWith(countryCode);
-    }, "Mobile number must match the selected country code.");
+        const iti = window.intlTelInput(input, {
+            initialCountry: "in",
+            nationalMode: false,
+            separateDialCode: true,
+            showSelectedDialCode: true,
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/utils.js"
+        });
+
+        const reset = () => {
+            input.classList.remove("error");
+            errorMsg.innerHTML = "";
+            errorMsg.classList.add("hide");
+            validMsg.classList.add("hide");
+        };
+
+        const showError = (msg) => {
+            input.classList.add("error");
+            errorMsg.innerHTML = msg;
+            errorMsg.classList.remove("hide");
+        };
+
+        // Validate on button click
+        input.addEventListener('blur', () => {
+            reset();
+            if (!input.value.trim()) {
+                showError("");
+            } else if (iti.isValidNumber()) {
+                validMsg.classList.remove("hide");
+            } else {
+                const errorCode = iti.getValidationError();
+                const msg = errorMap[errorCode] || "Invalid number";
+                showError(msg);
+            }
+        });
+
+        // Reset validation messages on change or keyup
+        input.addEventListener('change', reset);
+        input.addEventListener('keyup', reset);
+
+        // Get the input field and initialize the intlTelInput instance
+        input.addEventListener("input", function(e) {
+            // Get the entered value
+            let inputValue = e.target.value;
+        
+            // Remove any non-numeric characters
+            inputValue = inputValue.replace(/[^\d+]/g, '');
+        
+            // Update the input field value with only numeric characters
+            e.target.value = inputValue;
+            // Get the selected country's data
+        });
+
 
     // Listen for changes in the value of profileFor
     $('#profileFor').on('change', function() {
@@ -106,15 +142,18 @@ if (window.location.href === homePage && indexPage) {
                 $("#male").prop("disabled", true); 
                 $("#female").prop("disabled", false);
                 $("#female").prop("checked", true);
+                $('#gender-error').hide();
             }else if(profileFor === 'son'|| profileFor === 'brother'){
                 $("#female").prop("disabled", true); 
                 $("#male").prop("disabled", false);
                 $("#male").prop("checked", true);
+                $('#gender-error').hide();
             }else{
                 $("#female").prop("disabled", false);
                 $("#male").prop("disabled", false);
                 $("#male").prop("checked", false);
                 $("#female").prop("checked", false);
+                /* $('#gender-error').hide(); */
             }
         }else {
             $('#profileFor-error').show(); // Show error message if the field is empty
@@ -142,40 +181,69 @@ if (window.location.href === homePage && indexPage) {
                 <div  class="form-field">
                     <label for="whatsappNum">Whatsapp Number <span class="requirdField" >*</span></label>
                     <input type="tel" id="whatsappNum" name="whatsappNum" class="mob_number" placeholder="Enter whatsapp Number">
-                </div>`
-            ;
-            const whatsappNum = document.querySelector("#whatsappNum");
-            const whatsappNumItt = window.intlTelInput(whatsappNum, {
-                initialCountry: "in",
-                nationalMode: false,
-                separateDialCode: true,
-                showSelectedDialCode: true,
-                utilsScript: "./assets/js/utils.min.js?1714035314356"
+                    <label id="whatsapp-error-msg" class="error-msg hide"></label>
+                    <label id="whatsapp-valid-msg" class="valid-msg hide">Valid number</label>
+                </div>`;
 
-            }); 
-            // Get the input field and initialize the intlTelInput instance
-            whatsappNum.addEventListener("input", function(e) {
-                // Get the entered value
-                let inputValue = e.target.value;
+                const mobNumber = document.querySelector("#whatsappNum");
+                const input = document.querySelector("#whatsappNum");
+                const errorMsg = document.querySelector("#whatsapp-error-msg");
+                const validMsg = document.querySelector("#whatsapp-valid-msg");
+
+                const errorMap = ["Invalid number", "Invalid country code", "Entered mobile number is too short", "Entered mobile number is too long", "Invalid number"];
+
+                const iti = window.intlTelInput(input, {
+                    initialCountry: "in",
+                    nationalMode: false,
+                    separateDialCode: true,
+                    showSelectedDialCode: true,
+                    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/utils.js"
+                });
+
+                const reset = () => {
+                    input.classList.remove("error");
+                    errorMsg.innerHTML = "";
+                    errorMsg.classList.add("hide");
+                    validMsg.classList.add("hide");
+                };
+
+                const showError = (msg) => {
+                    input.classList.add("error");
+                    errorMsg.innerHTML = msg;
+                    errorMsg.classList.remove("hide");
+                };
+
+                // Validate on button click
+                input.addEventListener('blur', () => {
+                    reset();
+                    if (!input.value.trim()) {
+                        showError("");
+                    } else if (iti.isValidNumber()) {
+                        validMsg.classList.remove("hide");
+                    } else {
+                        const errorCode = iti.getValidationError();
+                        const msg = errorMap[errorCode] || "Invalid number";
+                        showError(msg);
+                    }
+                });
+
+                // Reset validation messages on change or keyup
+                input.addEventListener('change', reset);
+                input.addEventListener('keyup', reset);
+
+                // Get the input field and initialize the intlTelInput instance
+                mobNumber.addEventListener("input", function(e) {
+                    // Get the entered value
+                    let inputValue = e.target.value;
+                
+                    // Remove any non-numeric characters
+                    inputValue = inputValue.replace(/[^\d+]/g, '');
+                
+                    // Update the input field value with only numeric characters
+                    e.target.value = inputValue;
+                    // Get the selected country's data
+                });
             
-                // Remove any non-numeric characters
-                inputValue = inputValue.replace(/[^\d+]/g, '');
-            
-                // Update the input field value with only numeric characters
-                e.target.value = inputValue;
-                // Get the selected country's data
-            });
-            $.validator.addMethod("matchCountryCode", function(value, element) {
-                // Get the selected country's dial code
-                const selectedCountryData = whatsappNumItt.getSelectedCountryData();
-                const countryCode = selectedCountryData.dialCode;
-            
-                // Remove any non-numeric characters from the entered mobile number
-                const sanitizedMobileNumber = value.replace(/\D/g, '');
-            
-                // Check if the mobile number starts with the country code
-                return sanitizedMobileNumber.startsWith(countryCode);
-            }, "Mobile number must match the selected country code.");
             
         } else {
             // Clear the address field if "Same as above" is selected
@@ -188,7 +256,10 @@ if (window.location.href === homePage && indexPage) {
     $.validator.addMethod("recaptcha", function(value) {
         return grecaptcha.getResponse() !== "";
     }, "Please solve the reCAPTCHA.");
-    
+    // Add custom email validation method
+    $.validator.addMethod("customEmail", function(value, element) {
+        return this.optional(element) || /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(value);
+    }, "Please enter a valid email address");
     $('#mandatoryForm').validate({
         ignore: [],
         rules: {
@@ -219,7 +290,7 @@ if (window.location.href === homePage && indexPage) {
             },
             email: {
                 required: true,
-                email: true
+                customEmail: true
             },
             primaryMobNum: {
                 required: true,
@@ -262,16 +333,16 @@ if (window.location.href === homePage && indexPage) {
             },
             email: {
                 required: "This field is required.",
-                email: "Please enter a valid email address"
+                customEmail: "Please enter a valid email address"
             },
             primaryMobNum: {
-                required: "This field is required."
+                required: "This field is required.",
             },
             addWhatsappNum:{
                 required: "This field is required.",
             },
             whatsappNum: {
-                required: "This field is required."
+                required: "This field is required.",
             },
             'g-recaptcha-response': {
                 recaptcha: "Please solve the reCAPTCHA."
@@ -289,16 +360,35 @@ if (window.location.href === homePage && indexPage) {
             }
         },
         submitHandler: function (form) {
-            const formData = {};
+            event.preventDefault();
+
+            // Get the selected country code
+            var primarryNum_countryCode = iti.getSelectedCountryData().dialCode;
+            var primarryNum_phoneNumber = $("#primaryMobNum").val();
+            var primarryNumber = "+" + primarryNum_countryCode + primarryNum_phoneNumber;
+            $("#primaryMobNum").val(primarryNumber);
+
+            var whatsappNum_countryCode = iti.getSelectedCountryData().dialCode;
+            var whatsappNum_phoneNumber = $("#whatsappNum").val();
+            var whatsappNumNumber = "+" + whatsappNum_countryCode + whatsappNum_phoneNumber;
+            $("#whatsappNum").val(whatsappNumNumber);
+
+            // Now create the FormData object
+            const formData = new FormData(form);
+            formData.set('primaryMobNum', primarryNumber);
+            formData.set('whatsappNum', whatsappNumNumber); 
+
             new FormData(form).forEach((value, key) => {
                 formData[key] = value;
             });
+            // Create a hidden input to include the full number
             console.log(formData);
             // Form submission code goes here
-           // window.location.href = "https://mvgdigital.com/bellsnrings/verify_otp.html";
+           window.location.href = "https://mvgdigital.com/bellsnrings/verify_otp.html";
             return false; // Prevent form submission for this example
         },
     });
+    
    
 }else if(window.location.href === verifyOTPPage) {
     // Verify OTP Js
@@ -309,156 +399,288 @@ if (window.location.href === homePage && indexPage) {
         
         if(editbtnId == "edit-PrimaryNum"){
             $('#popupView').show('slow');
-            
 
             document.getElementById('update-number').innerHTML = `
                 <div id="editPrimaryMobNum" class="form-field edit-field mb-3">
                 <label for="primaryMobNum">Primary Mobile Number :</label>
-                <input type="tel" name="primaryMobNum" id="primaryMobNum" class="" placeholder="Enter Mobile Number">
-            </div>`;
+                <input type="tel" name="primaryMobNum" id="primaryMobNum" class="mob_number" placeholder="Enter Mobile Number">
+                <label id="error-msg" class="error-msg hide"></label>
+                <label id="valid-msg" class="valid-msg hide">Valid number</label>
+            </div>`; 
+            //update contact info
+            const input = document.querySelector(".mob_number");
+            const errorMsg = document.querySelector("#error-msg");
+            const validMsg = document.querySelector("#valid-msg");
 
-            //Mobile number validation
-            const primaryNum = document.querySelector("#primaryMobNum");
-            const primaryNumItt = window.intlTelInput(primaryNum, {
+            const errorMap = ["Invalid number", "Invalid country code", "Entered mobile number is too short", "Entered mobile number is too long", "Invalid number"];
+
+            const iti = window.intlTelInput(input, {
                 initialCountry: "in",
                 nationalMode: false,
                 separateDialCode: true,
                 showSelectedDialCode: true,
-                utilsScript: "./assets/js/utils.min.js?1714035314356"
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/utils.js"
             });
 
+            const reset = () => {
+                input.classList.remove("error");
+                errorMsg.innerHTML = "";
+                errorMsg.classList.add("hide");
+                validMsg.classList.add("hide");
+            };
+
+            const showError = (msg) => {
+                input.classList.add("error");
+                errorMsg.innerHTML = msg;
+                errorMsg.classList.remove("hide");
+            };
+
+            // Validate on button click
+            input.addEventListener('blur', () => {
+                reset();
+                if (!input.value.trim()) {
+                    showError("");
+                } else if (iti.isValidNumber()) {
+                    validMsg.classList.remove("hide");
+                } else {
+                    const errorCode = iti.getValidationError();
+                    const msg = errorMap[errorCode] || "Invalid number";
+                    showError(msg);
+                }
+            });
+
+            // Reset validation messages on change or keyup
+            input.addEventListener('change', reset);
+            input.addEventListener('keyup', reset);
+
             // Get the input field and initialize the intlTelInput instance
-            primaryNum.addEventListener("input", function(e) {
+            input.addEventListener("input", function(e) {
                 // Get the entered value
                 let inputValue = e.target.value;
-
+            
                 // Remove any non-numeric characters
                 inputValue = inputValue.replace(/[^\d+]/g, '');
-
+            
                 // Update the input field value with only numeric characters
                 e.target.value = inputValue;
                 // Get the selected country's data
             });
+            $('#update_contactInfo').validate({
+                rules: {
+                    primaryMobNum: {
+                        required: true,
+                        // Add more rules as needed
+                    },
+                },
+                messages: {
+                    primaryMobNum: {
+                        required: "Please enter your primary mobile number"
+                        // Add more messages for specific rules as needed
+                    },
+                },
+                submitHandler: function(form) {
+                    // If form is valid, handle submission here
+                    event.preventDefault();
 
-            $.validator.addMethod("matchCountryCode", function(value, element) {
-                // Get the selected country's dial code
-                const selectedCountryData = primaryNumItt.getSelectedCountryData();
-                const countryCode = selectedCountryData.dialCode;
+                    // You can access the values of fields using jQuery
+                    var primarryNum_phoneNumber = $("#primaryMobNum").val();
 
-                // Remove any non-numeric characters from the entered mobile number
-                const sanitizedMobileNumber = value.replace(/\D/g, '');
+                    // Get the selected country code
+                    var primarryNum_countryCode = iti.getSelectedCountryData().dialCode;
+                    var primarryNumber = "+" + primarryNum_countryCode + primarryNum_phoneNumber;
+                    $("#primaryMobNum").val(primarryNumber);
 
-                // Check if the mobile number starts with the country code
-                return sanitizedMobileNumber.startsWith(countryCode);
-            }, "Mobile number must match the selected country code.");
+                    // Now create the FormData object
+                    const formData = new FormData(form);
+                    formData.set('primaryMobNum', primarryNumber);
+                    
+                    console.log(FormData);
 
+                    new FormData(form).forEach((value, key) => {
+                        formData[key] = value;
+                    });
 
+                    $(".spinner-gif").show();
+                    setTimeout(function() {
+                        $(".spinner-gif").hide();
+                        $(".success-msg").show();
+                        // Hide the success message after 2 seconds
+                        setTimeout(function() {
+                            $(".success-msg").hide();
+                            $('#popupView').hide('slow')
+                        }, 2000);
+                    }, 2000);
+                },
+            });
+           
         }else if(editbtnId == "edit-whatsappNum"){
             $('#popupView').show('slow');
 
             document.getElementById('update-number').innerHTML = `
                 <div id="editWhatsappNum" class="form-field edit-field mb-3">
                 <label for="whatsappNum">Whatsapp Number :</label>
-                <input type="tel" name="whatsappNum" id="whatsappNum" class="" placeholder="Enter whatsapp Number">
+                <input type="tel" name="whatsappNum" id="whatsappNum" class="mob_number" placeholder="Enter whatsapp Number">
+                <label id="error-msg" class="error-msg hide"></label>
+                <label id="valid-msg" class="valid-msg hide">Valid number</label>
                 </div>`;
+                //update contact info
+                const input = document.querySelector(".mob_number");
+                const errorMsg = document.querySelector("#error-msg");
+                const validMsg = document.querySelector("#valid-msg");
 
-                const whatsappNum = document.querySelector("#whatsappNum");
-                const whatsappNumItt = window.intlTelInput(whatsappNum, {
+                const errorMap = ["Invalid number", "Invalid country code", "Entered mobile number is too short", "Entered mobile number is too long", "Invalid number"];
+
+                const iti = window.intlTelInput(input, {
                     initialCountry: "in",
                     nationalMode: false,
                     separateDialCode: true,
                     showSelectedDialCode: true,
-                    utilsScript: "./assets/js/utils.min.js?1714035314356"
+                    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/utils.js"
+                });
 
-                }); 
+                const reset = () => {
+                    input.classList.remove("error");
+                    errorMsg.innerHTML = "";
+                    errorMsg.classList.add("hide");
+                    validMsg.classList.add("hide");
+                };
+
+                const showError = (msg) => {
+                    input.classList.add("error");
+                    errorMsg.innerHTML = msg;
+                    errorMsg.classList.remove("hide");
+                };
+
+                // Validate on button click
+                input.addEventListener('blur', () => {
+                    reset();
+                    if (!input.value.trim()) {
+                        showError("");
+                    } else if (iti.isValidNumber()) {
+                        validMsg.classList.remove("hide");
+                    } else {
+                        const errorCode = iti.getValidationError();
+                        const msg = errorMap[errorCode] || "Invalid number";
+                        showError(msg);
+                    }
+                });
+
+                // Reset validation messages on change or keyup
+                input.addEventListener('change', reset);
+                input.addEventListener('keyup', reset);
+
                 // Get the input field and initialize the intlTelInput instance
-                whatsappNum.addEventListener("input", function(e) {
+                input.addEventListener("input", function(e) {
                     // Get the entered value
                     let inputValue = e.target.value;
-
+                
                     // Remove any non-numeric characters
                     inputValue = inputValue.replace(/[^\d+]/g, '');
-
+                
                     // Update the input field value with only numeric characters
                     e.target.value = inputValue;
                     // Get the selected country's data
                 });
-                $.validator.addMethod("matchCountryCode", function(value, element) {
-                    // Get the selected country's dial code
-                    const selectedCountryData = whatsappNumItt.getSelectedCountryData();
-                    const countryCode = selectedCountryData.dialCode;
+                $('#update_contactInfo').validate({
+                    rules: {
+                        primaryMobNum: {
+                            required: true,
+                            // Add more rules as needed
+                        },
+                    },
+                    messages: {
+                        primaryMobNum: {
+                            required: "Please enter your primary mobile number"
+                            // Add more messages for specific rules as needed
+                        },
+                    },
+                    submitHandler: function(form) {
+                        // If form is valid, handle submission here
+                        event.preventDefault();
 
-                    // Remove any non-numeric characters from the entered mobile number
-                    const sanitizedMobileNumber = value.replace(/\D/g, '');
+                        var whatsappNum_countryCode = iti.getSelectedCountryData().dialCode;
+                        var whatsappNum_phoneNumber = $("#whatsappNum").val();
+                        var whatsappNumNumber = "+" + whatsappNum_countryCode + whatsappNum_phoneNumber;
+                        $("#whatsappNum").val(whatsappNumNumber);
 
-                    // Check if the mobile number starts with the country code
-                    return sanitizedMobileNumber.startsWith(countryCode);
-                }, "Mobile number must match the selected country code.");
+                        // Now create the FormData object
+                        const formData = new FormData(form);
+                        formData.set('whatsappNum', whatsappNumNumber); 
+                        
+                        console.log(FormData);
+
+                        new FormData(form).forEach((value, key) => {
+                            formData[key] = value;
+                        });
+
+                        $(".spinner-gif").show();
+                        setTimeout(function() {
+                            $(".spinner-gif").hide();
+                            $(".success-msg").show();
+                            // Hide the success message after 2 seconds
+                            setTimeout(function() {
+                                $(".success-msg").hide();
+                                $('#popupView').hide('slow')
+                            }, 2000);
+                        }, 2000);
+                    },
+                });
         }else if(editbtnId == "edit-email"){
             $('#popupView').show('slow');
             document.getElementById('update-number').innerHTML = `
                 <div id="editEmail" class="form-field edit-field mb-3">
                 <label for="email">Email ID :</label>
-                <input type="text" name="email" id="email" class="" placeholder="Enter email">
+                <input type="text" name="email" id="email" placeholder="Enter email">
                 </div>`;
+                // Add custom email validation method
+                $.validator.addMethod("customEmail", function(value, element) {
+                    return this.optional(element) || /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(value);
+                }, "Please enter a valid email address");
+                $('#update_contactInfo').validate({
+                    rules: {
+                        email: {
+                            required: true,
+                            customEmail: true
+                            // Add more rules as needed
+                        },
+                    },
+                    messages: {
+                        email: {
+                            required: "Please enter email",
+                            customEmail: "Please enter a valid email address"
+                            // Add more messages for specific rules as needed
+                        },
+                    },
+                    submitHandler: function(form) {
+                        // If form is valid, handle submission here
+                        event.preventDefault();
+
+                        // Now create the FormData object
+                        const formData = new FormData(form);
+                        console.log(FormData);
+
+                        new FormData(form).forEach((value, key) => {
+                            formData[key] = value;
+                        });
+
+                        $(".spinner-gif").show();
+                        setTimeout(function() {
+                            $(".spinner-gif").hide();
+                            $(".success-msg").show();
+                            // Hide the success message after 2 seconds
+                            setTimeout(function() {
+                                $(".success-msg").hide();
+                                $('#popupView').hide('slow')
+                            }, 2000);
+                        }, 2000);
+                    },
+                });
         }else{
             console.log("Something Wrong!");
         }        
     });
     $(".close-btn").click(function(){
         $('#popupView').hide('slow');
-    });
-
-    //update contact info
-    $('#update_contactInfo').validate({
-        rules: {
-            primaryMobNum: {
-                required: true,
-                // Add more rules as needed
-            },
-            whatsappNum: {
-                required: true,
-                // Add more rules as needed
-            },
-            email: {
-                required: true,
-                email: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/i
-            }
-            // Add more fields and their validation rules as needed
-        },
-        messages: {
-            primaryMobNum: {
-                required: "Please enter your primary mobile number"
-                // Add more messages for specific rules as needed
-            },
-            whatsappNum: {
-                required: "Please enter your whatsapp number"
-                // Add more messages for specific rules as needed
-            },
-            email: {
-                required: "Please enter your email",
-                email: "Please enter a valid email address" // Message for invalid email
-            }
-            // Add more messages for other fields as needed
-        },
-        submitHandler: function(form) {
-            // If form is valid, handle submission here
-            // You can access the values of fields using jQuery
-            var primaryMobNum = $('#primaryMobNum').val();
-            var whatsappNum = $('#whatsappNum').val();
-            var email = $('#email');
-
-            $(".spinner-gif").show();
-            setTimeout(function() {
-                $(".spinner-gif").hide();
-                $(".success-msg").show();
-                // Hide the success message after 2 seconds
-                setTimeout(function() {
-                    $(".success-msg").hide();
-                    $('#popupView').hide('slow')
-                }, 2000);
-            }, 2000);
-        },
     });
 
     /* Sent OTP Button */
@@ -1158,22 +1380,24 @@ if (window.location.href === homePage && indexPage) {
             // Call updateProgressBar function initially
             updateProgressBar();
 
-            // Annual Income Code
             $(document).on("input keyup", ".price-format-input", function (e) {
                 // Allow only numbers and certain control keys (e.g., backspace, delete)
                 if (e.type === "keypress" && (e.which < 48 || e.which > 57)) {
                     e.preventDefault();
                     return;
                 }
-
+            
                 let val = this.value.replace(/,/g, "");
-
+            
                 // Prevent leading zero
                 if (val.length === 1 && val === '0') {
                     e.preventDefault();
                     return;
                 }
-
+            
+                // Remove any non-digit characters
+                val = val.replace(/\D/g, '');
+            
                 // Format with commas according to Indian numbering system
                 if (val.length > 3) {
                     let lastThree = val.substring(val.length - 3);
@@ -1186,11 +1410,11 @@ if (window.location.href === homePage && indexPage) {
                 } else {
                     this.value = val;
                 }
-
+            
                 // Update text below the input field with the amount in words
                 let amountInText = convertToIndianWords(val.replace(/,/g, ''));
                 $("#textBelowIncome").text(" " + amountInText);
-
+            
                 // Hide textBelowIncome if annual_income is empty
                 if ($(this).val() === '') {
                     $("#textBelowIncome").hide();
@@ -1198,24 +1422,24 @@ if (window.location.href === homePage && indexPage) {
                     $("#textBelowIncome").show();
                 }
             });
-
+            
             // Function to convert a number to words in the Indian numbering system
             function convertToIndianWords(num) {
                 const ones = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
                 const tens = ['Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
                 const higher = ['Thousand', 'Lakh', 'Crore'];
-
+            
                 if (num === '0') return 'Zero';
-                
+            
                 function getBelowThousand(n) {
                     if (n < 20) return ones[n];
                     if (n < 100) return tens[Math.floor(n / 10) - 2] + (n % 10 ? ' ' + ones[n % 10] : '');
                     return ones[Math.floor(n / 100)] + ' Hundred' + (n % 100 ? ' ' + getBelowThousand(n % 100) : '');
                 }
-
+            
                 let result = '';
                 let n = parseInt(num, 10);
-                
+            
                 if (n >= 10000000) {
                     result += getBelowThousand(Math.floor(n / 10000000)) + ' Crore ';
                     n = n % 10000000;
@@ -1231,10 +1455,10 @@ if (window.location.href === homePage && indexPage) {
                 if (n > 0) {
                     result += getBelowThousand(n);
                 }
-                
+            
                 return result.trim();
             }
-
+            
             // Set focus on the annual_income input field
             $("#annual_income").focus();
             
@@ -1371,10 +1595,21 @@ if (window.location.href === homePage && indexPage) {
     //Side Nav
     let btn = document.querySelector("#menu-btn");
     let sidebar = document.querySelector(".sidebar");
-    let searchBtn = document.querySelector(".bx-search");
+    let menu_title = document.querySelector("#menu_title");
 
     btn.onclick = () => {
-    sidebar.classList.toggle('active');
+        sidebar.classList.toggle('active');
+
+        // Toggle between fa-bars and fa-times
+        if (btn.classList.contains('fa-bars')) {
+            btn.classList.remove('fa-bars');
+            btn.classList.add('fa-times');
+            $(menu_title).text("Close")
+        } else {
+            btn.classList.remove('fa-times');
+            btn.classList.add('fa-bars');
+            $(menu_title).text("Menu")
+        }
     };
 
     //Chart js Code
@@ -1402,7 +1637,7 @@ if (window.location.href === homePage && indexPage) {
         labels: ['Active', 'Ready', 'Unverified', 'Trash', 'Settled', 'Delete'],  // Updated labels
         datasets: [
             {
-                label: 'Dataset 1',
+                label: 'User',
                 data: dataValues,  // Set data using array
                 backgroundColor: Object.values(Utils.CHART_COLORS),
             }
@@ -1479,9 +1714,21 @@ if (window.location.href === homePage && indexPage) {
     //Side Nav
     let btn = document.querySelector("#menu-btn");
     let sidebar = document.querySelector(".sidebar");
+    let menu_title = document.querySelector("#menu_title");
 
     btn.onclick = () => {
-    sidebar.classList.toggle('active');
+        sidebar.classList.toggle('active');
+
+        // Toggle between fa-bars and fa-times
+        if (btn.classList.contains('fa-bars')) {
+            btn.classList.remove('fa-bars');
+            btn.classList.add('fa-times');
+            $(menu_title).text("Close")
+        } else {
+            btn.classList.remove('fa-times');
+            btn.classList.add('fa-bars');
+            $(menu_title).text("Menu")
+        }
     };
 
     /* Tab View Code  */
@@ -2022,10 +2269,21 @@ if (window.location.href === homePage && indexPage) {
     //Side Nav
     let btn = document.querySelector("#menu-btn");
     let sidebar = document.querySelector(".sidebar");
-    let searchBtn = document.querySelector(".bx-search");
+    let menu_title = document.querySelector("#menu_title");
 
     btn.onclick = () => {
-    sidebar.classList.toggle('active');
+        sidebar.classList.toggle('active');
+
+        // Toggle between fa-bars and fa-times
+        if (btn.classList.contains('fa-bars')) {
+            btn.classList.remove('fa-bars');
+            btn.classList.add('fa-times');
+            $(menu_title).text("Close")
+        } else {
+            btn.classList.remove('fa-times');
+            btn.classList.add('fa-bars');
+            $(menu_title).text("Menu")
+        }
     };
 
     //Image Download
@@ -2068,9 +2326,21 @@ if (window.location.href === homePage && indexPage) {
     //Side Nav
     let btn = document.querySelector("#menu-btn");
     let sidebar = document.querySelector(".sidebar");
+    let menu_title = document.querySelector("#menu_title");
 
     btn.onclick = () => {
-    sidebar.classList.toggle('active');
+        sidebar.classList.toggle('active');
+
+        // Toggle between fa-bars and fa-times
+        if (btn.classList.contains('fa-bars')) {
+            btn.classList.remove('fa-bars');
+            btn.classList.add('fa-times');
+            $(menu_title).text("Close")
+        } else {
+            btn.classList.remove('fa-times');
+            btn.classList.add('fa-bars');
+            $(menu_title).text("Menu")
+        }
     };
 
     /* Tab View Code  */
@@ -2354,9 +2624,21 @@ if (window.location.href === homePage && indexPage) {
     //Side Nav
     let btn = document.querySelector("#menu-btn");
     let sidebar = document.querySelector(".sidebar");
+    let menu_title = document.querySelector("#menu_title");
 
     btn.onclick = () => {
-    sidebar.classList.toggle('active');
+        sidebar.classList.toggle('active');
+
+        // Toggle between fa-bars and fa-times
+        if (btn.classList.contains('fa-bars')) {
+            btn.classList.remove('fa-bars');
+            btn.classList.add('fa-times');
+            $(menu_title).text("Close")
+        } else {
+            btn.classList.remove('fa-times');
+            btn.classList.add('fa-bars');
+            $(menu_title).text("Menu")
+        }
     };
 
     /* $('#generatePassword').submit(function(event) {
@@ -2371,6 +2653,8 @@ if (window.location.href === homePage && indexPage) {
             
         }
     }); */
+
+    //passpattern= "(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#&()–{}:;,/*~$^+=<>]).{10,100}"
 
     $.validator.addMethod("notEqualToOldPassword", function(value, element) {
         return value !== $("#old_password").val();

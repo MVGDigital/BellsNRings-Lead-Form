@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="./assets/css/select2.min.css"/>
     <link rel="stylesheet" href="./assets/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="./assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./assets/css/intlTelInput.min.css">
+    <!-- <link rel="stylesheet" href="./assets/css/intlTelInput.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/css/intlTelInput.min.css"/>
     <link rel="stylesheet" href="./assets/css/custom.css">
-    
-    
+
     <!-- Style Files -->
 </head>
 <body>
@@ -116,6 +116,8 @@
                             <div class="form-field">
                                 <label for="primaryMobNum">Primary Mobile Number <span class="requirdField" >*</span></label>
                                 <input type="tel" id="primaryMobNum" name="primaryMobNum" class="mob_number" placeholder="Enter Mobile Number">
+                                <label id="error-msg" class="error-msg hide"></label>
+                                <label id="valid-msg" class="valid-msg hide">Valid number</label>
                             </div>
                         </div>
                         <div class="col-12 col-lg-5 col-md-5 col-sm-12 mb-3">
@@ -155,8 +157,10 @@
 
 
     <!-- plugin Files -->
-    <script src="./assets/js/intlTelInput.min.js"></script>
+    
     <script src="./assets/js/jquery-3.7.1.min.js"></script>
+    <!-- <script src="./assets/js/intlTelInput.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js"></script>
     <script src="./assets/bootstrap-5.0.2/js/bootstrap.min.js"></script>
     <script src="./assets/js/select2.min.js"></script>
     <script src="./assets/js/jquery.validate.min.js"></script>
@@ -168,8 +172,53 @@
     <!-- plugin Files -->
     
     <script>
-       
+       /*  const input = document.querySelector("#primaryMobNum");
+        const errorMsg = document.querySelector("#error-msg");
+        const validMsg = document.querySelector("#valid-msg");
+
+        const errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
+
+        const iti = window.intlTelInput(input, {
+            initialCountry: "in",
+            nationalMode: false,
+            separateDialCode: true,
+            showSelectedDialCode: true,
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+        });
+
+        const reset = () => {
+            input.classList.remove("error");
+            errorMsg.innerHTML = "";
+            errorMsg.classList.add("hide");
+            validMsg.classList.add("hide");
+        };
+
+        const showError = (msg) => {
+            input.classList.add("error");
+            errorMsg.innerHTML = msg;
+            errorMsg.classList.remove("hide");
+        };
+
+        // Validate on button click
+        input.addEventListener('blur', () => {
+            reset();
+            if (!input.value.trim()) {
+                showError("");
+            } else if (iti.isValidNumber()) {
+                validMsg.classList.remove("hide");
+            } else {
+                const errorCode = iti.getValidationError();
+                const msg = errorMap[errorCode] || "Invalid number";
+                showError(msg);
+            }
+        });
+
+        // Reset validation messages on change or keyup
+        input.addEventListener('change', reset);
+        input.addEventListener('keyup', reset); */
        
     </script>
 </body>
 </html>
+
+

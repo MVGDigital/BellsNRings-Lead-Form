@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
 
-var homePage = "https://mvgdigital.com/bellsnrings/";
+/* var homePage = "https://mvgdigital.com/bellsnrings/";
 var indexPage = "https://mvgdigital.com/bellsnrings/index.html";
 var verifyOTPPage = "https://mvgdigital.com/bellsnrings/verify_otp.html";
 var detailPage = "https://mvgdigital.com/bellsnrings/detail_form.html";
@@ -11,9 +11,9 @@ var dashboardPage = "https://mvgdigital.com/bellsnrings/dashboard.html";
 var usersPage = "https://mvgdigital.com/bellsnrings/users.html";
 var userDetailsPage = "https://mvgdigital.com/bellsnrings/user_details.html";
 var generateQRPage =  "https://mvgdigital.com/bellsnrings/generate_qr.html";
-var settingsPage = "https://mvgdigital.com/bellsnrings/settings.html";
+var settingsPage = "https://mvgdigital.com/bellsnrings/settings.html"; */
 
-/* var homePage = "http://localhost/projects/BellsNRings/";
+var homePage = "http://localhost/projects/BellsNRings/";
 var indexPage = "http://localhost/projects/BellsNRings/index.html";
 var verifyOTPPage = "http://localhost/projects/BellsNRings/verify_otp.html";
 var detailPage = "http://localhost/projects/BellsNRings/detail_form.html";
@@ -23,7 +23,7 @@ var dashboardPage = "http://localhost/projects/BellsNRings/dashboard.html";
 var usersPage = "http://localhost/projects/BellsNRings/users.html";
 var userDetailsPage = "http://localhost/projects/BellsNRings/user_details.html";
 var generateQRPage =  "http://localhost/projects/BellsNRings/generate_qr.html";
-var settingsPage = "http://localhost/projects/BellsNRings/settings.html"; */
+var settingsPage = "http://localhost/projects/BellsNRings/settings.html";
 
 
 if (window.location.href === homePage && indexPage) {

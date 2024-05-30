@@ -26,6 +26,7 @@
     font-family: 'Cinzel-SemiBold';
     src: url('../fonts/Cinzel-SemiBold.ttf');
 }
+
 .p_12{
     padding: 12px!important;
 }
@@ -261,6 +262,7 @@ h4{
     background-image: url('../img/location-icon.svg')!important;
 }
 .form-select.datepic{
+    text-align: start;
     cursor: pointer;
     background-size: auto;
     background-image: url('../img/date-icon.svg')!important;

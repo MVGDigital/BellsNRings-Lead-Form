@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
 
-/* var homePage = "https://mvgdigital.com/bellsnrings/";
+var homePage = "https://mvgdigital.com/bellsnrings/";
 var indexPage = "https://mvgdigital.com/bellsnrings/index.html";
 var verifyOTPPage = "https://mvgdigital.com/bellsnrings/verify_otp.html";
 var detailPage = "https://mvgdigital.com/bellsnrings/detail_form.html";
@@ -11,9 +11,9 @@ var dashboardPage = "https://mvgdigital.com/bellsnrings/dashboard.html";
 var usersPage = "https://mvgdigital.com/bellsnrings/users.html";
 var userDetailsPage = "https://mvgdigital.com/bellsnrings/user_details.html";
 var generateQRPage =  "https://mvgdigital.com/bellsnrings/generate_qr.html";
-var settingsPage = "https://mvgdigital.com/bellsnrings/settings.html"; */
+var settingsPage = "https://mvgdigital.com/bellsnrings/settings.html";
 
-var homePage = "http://localhost/projects/BellsNRings/";
+/* var homePage = "http://localhost/projects/BellsNRings/";
 var indexPage = "http://localhost/projects/BellsNRings/index.html";
 var verifyOTPPage = "http://localhost/projects/BellsNRings/verify_otp.html";
 var detailPage = "http://localhost/projects/BellsNRings/detail_form.html";
@@ -23,10 +23,12 @@ var dashboardPage = "http://localhost/projects/BellsNRings/dashboard.html";
 var usersPage = "http://localhost/projects/BellsNRings/users.html";
 var userDetailsPage = "http://localhost/projects/BellsNRings/user_details.html";
 var generateQRPage =  "http://localhost/projects/BellsNRings/generate_qr.html";
-var settingsPage = "http://localhost/projects/BellsNRings/settings.html";
+var settingsPage = "http://localhost/projects/BellsNRings/settings.html"; */
 
 
 if (window.location.href === homePage && indexPage) {
+   console.log( $('#qrId').val());
+
     // Index page Js
         var currentDate = new Date();
         var maxDate = new Date(currentDate.getFullYear() - 18, currentDate.getMonth(), currentDate.getDate()); // Date 18 years ago
@@ -1461,9 +1463,64 @@ if (window.location.href === homePage && indexPage) {
             
             // Set focus on the annual_income input field
             $("#annual_income").focus();
+
+            function readURL(input, imgControlName) {
+                if (input.files && input.files[0]) {
+                    var file = input.files[0];
+                    var fileType = file.type;
+                    var fileSize = file.size;
+                    var validImageTypes = ["image/jpeg", "image/png", "image/jpeg"];
             
+                    // File size limit in bytes (2 MB)
+                    var maxSize = 2 * 1024 * 1024;
             
-            //Image Upload Code
+                    if (!validImageTypes.includes(fileType)) {
+                        showError("Invalid file type. Only JPG, PNG, and Jpeg are allowed.");
+                        return;
+                    }
+            
+                    if (fileSize > maxSize) {
+                        showError("File size exceeds 2 MB.");
+                        return;
+                    }
+            
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $(imgControlName).attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(file);
+                }
+            }
+            
+            function showError(message) {
+                $("#error-message").text(message).show();
+                setTimeout(function() {
+                    $("#error-message").hide();
+                }, 5000);
+            }
+            
+            $("#imag").change(function() {
+                // add your logic to decide which image control you'll use
+                var imgControlName = "#ImgPreview";
+                readURL(this, imgControlName);
+                $('.preview1').addClass('it');
+                $("#ImgPreview").show('slow', function(){
+                    $('.btn-rmv1').addClass('rmv');
+                });
+            });
+            
+            $("#removeImage1").click(function(e) {
+                e.preventDefault();
+                $("#imag").val("");
+                $("#ImgPreview").hide(function(){
+                    $("#ImgPreview").attr("src", "");
+                });
+                $('.preview1').removeClass('it');
+                $('.btn-rmv1').removeClass('rmv');
+                $("#error-message").hide();
+            });
+            
+           /*  //Image Upload Code
             function readURL(input, imgControlName) {
                 if (input.files && input.files[0]) {
                   var reader = new FileReader();
@@ -1493,7 +1550,7 @@ if (window.location.href === homePage && indexPage) {
                 });
                 $('.preview1').removeClass('it');
                 $('.btn-rmv1').removeClass('rmv');
-              });
+              }); */
             
 }else if (window.location.href === successPage){
 
@@ -1520,26 +1577,18 @@ if (window.location.href === homePage && indexPage) {
     $("#loginForm").validate({
         rules: {
             userName: {
-                required: true,
-                minlength: 2,
-                maxlength: 50,
+                required: true
             },
             password: {
-                required: true,
-                minlength: 8,
-                maxlength: 50,
+                required: true
             }
         },
         messages: {
             userName: {
-                required: "Please enter a user name.",
-                minlength: "User name should at least 2 letters.",
-                maxlength: "User name cannot be more than 50 letters"
+                required: "Please enter a user name."
             },
             password: {
-                required: "Please enter a password.",
-                minlength: "Password should be at least  8 charactre.",
-                maxlength: "Password cannot be more than 50 letters"
+                required: "Please enter a password."
             }
         },
         submitHandler: function(form) {
@@ -1624,9 +1673,7 @@ if (window.location.href === homePage && indexPage) {
             yellow: 'rgb(255, 205, 86)',
             blue: 'rgb(54, 162, 235)',
             purple: 'rgb(153, 102, 255)',
-            red: 'rgb(255, 99, 132)',
-           
-            
+            red: 'rgb(255, 99, 132)', 
         }
     };
 

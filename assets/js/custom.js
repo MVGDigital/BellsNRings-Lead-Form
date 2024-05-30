@@ -2262,6 +2262,22 @@ if (window.location.href === homePage && indexPage) {
         //Image Upload Code
         function readURL(input, imgControlName) {
             if (input.files && input.files[0]) {
+                var file = input.files[0];
+                var fileType = file.type;
+                var fileSize = file.size;
+                var validImageTypes = ["image/jpeg", "image/png", "image/gif"];
+                // File size limit in bytes (2 MB)
+                var maxSize = 2 * 1024 * 1024;
+
+                if (!validImageTypes.includes(fileType)) {
+                    showError("Invalid file type. Only JPG, PNG, and GIF are allowed.");
+                    return;
+                }
+        
+                if (fileSize > maxSize) {
+                    showError("File size exceeds 2 MB.");
+                    return;
+                }
               var reader = new FileReader();
               reader.onload = function(e) {
                 $(imgControlName).attr('src', e.target.result);
@@ -2269,6 +2285,12 @@ if (window.location.href === homePage && indexPage) {
               reader.readAsDataURL(input.files[0]);
             }
           }
+          function showError(message) {
+            $("#error-message").text(message).show();
+            setTimeout(function() {
+                $("#error-message").hide();
+            }, 5000);
+        }
           
           $("#editphoto").change(function() {
             // add your logic to decide which image control you'll use
@@ -2289,6 +2311,7 @@ if (window.location.href === homePage && indexPage) {
             });
             $('.preview1').removeClass('it');
             $('.btn-rmv1').removeClass('rmv');
+            $("#error-message").hide();
           });
   
 }else if (window.location.href === userDetailsPage){

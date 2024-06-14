@@ -102,7 +102,8 @@ $encryptedBNRID = encrypt($bnr_id, $encryption_key);
 						<p class="text-danger errormessage" role="alert"><?php echo $ERROR_MSG; ?></p>
 					<?php } ?>
                     <form id="mandatoryForm" name="mandatoryForm" class="form-section" method="POST" action="createprocess.php" enctype="multipart/form-data">
-                        <input type="hidden" id="bnr_id" name="bnr_id" value="<?php echo $bnr_id; ?>">
+                    <?php //echo $eve_id; ?>
+                    <input type="hidden" id="bnr_id" name="bnr_id" value="<?php echo $bnr_id; ?>">
                         <input type="hidden" id="qr_id" name="qr_id" value="<?php echo $eve_id; ?>">
                         <div class="col-12 col-lg-5 col-md-5 col-sm-12 mb-3">
                             <div class="form-field">

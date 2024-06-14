@@ -12,6 +12,17 @@ include 'layouts/session.php';
 			$sql = "INSERT INTO bnr_generated_qrcode (event_name, event_date, event_location,created_date) VALUES ('$event_name', '$event_date', '$event_location',now())";
 			if (mysqli_query($link, $sql)) {
 				$newEventID = mysqli_insert_id($link);
+
+				function encrypt($data, $key) {
+					$cipher = "aes-256-cbc"; 
+					$iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($cipher)); 
+					$encrypted = openssl_encrypt($data, $cipher, $key, 0, $iv); 
+					return base64_encode($encrypted . '::' . $iv); 
+				}
+				
+				$newEventID = encrypt($newEventID, $encryption_key);
+
+
 				echo $newEventID;
 			} else {
 				echo "Error: " . $sql . "<br>" . mysqli_error($link);

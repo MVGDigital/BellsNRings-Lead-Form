@@ -28,7 +28,7 @@
 		$ERROR_MSG = '';
 	}
 	
-	$url = 'http://localhost/projects/BellsNRings/newUpdatedCode';
+	$url = 'http://localhost/BellsNRings/BellsNRings-Lead-Form';
 	$encryption_key = 'bnr-form-2024';
 
 ?>

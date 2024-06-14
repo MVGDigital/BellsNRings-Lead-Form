@@ -76,7 +76,7 @@ $eventName = isset($_POST['eventName']) ? htmlspecialchars($_POST['eventName']) 
                                 <div class="col-12 mb-3">
                                     <div class="form-field">
                                         <label for="eventName">Event Name <span class="requirdField" >*</span></label>
-                                        <input type="text" id="eventName" name="eventName" placeholder="Enter event name" value="<?php echo $eventName; ?>" oninput="updateEventTitle()">
+                                        <input type="text" id="eventName" name="eventName" placeholder="Enter event name" value="" oninput="updateEventTitle()">
                                     </div>
                                 </div>
                                 <div class="col-12 mb-3">
@@ -319,7 +319,8 @@ $eventName = isset($_POST['eventName']) ? htmlspecialchars($_POST['eventName']) 
             function generateQRCode(newEventID)
 			{
                 var identifier = newEventID;
-                var registerPageURL = "https://bnrstage.mvgdigital.com/?eve_id=" + identifier;
+                //var registerPageURL = "https://bnrstage.mvgdigital.com/?eve_id=" + identifier;
+                var registerPageURL = "<?php echo $url; ?>?eve_id=" + identifier;
                 var combinedText = registerPageURL;
             
                 var qrcode = new QRCode(document.getElementById("qrcode"), {

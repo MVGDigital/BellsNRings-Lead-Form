@@ -4,7 +4,7 @@ include 'admin-login/layouts/config.php';
 
 if(isset($_GET['bnr_id'])) 
 {
-    echo $bnr_id = $_GET['bnr_id'];
+    $bnr_id = $_GET['bnr_id'];
     
 	
 	function decrypt($data, $key) {
@@ -36,8 +36,6 @@ if(isset($_GET['bnr_id']))
 		$_SESSION["errorMsg"] = "Illegal Try";
 		// header("location:index.php");
 	}
-
-
 }
 else
 {
@@ -45,8 +43,6 @@ else
 	$_SESSION["errorMsg"] = "234 Try";
 	header("location:index.php");
 }
-
-
 ?>
 <?php
 function maskMobileNumber($mobileNumber) {

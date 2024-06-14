@@ -29,8 +29,8 @@
     <!-- Header Section -->
 
     <!-- Main Container -->
-    <div class="main-container bg-img">
-        <div class="row ml_50 mr_0 form-container">
+    <div class="main-container bg-img height100vh">
+        <div class="row ml_50 mr_0 form-container height100vh">
             <div class="col-md-12 col-lg-3">
                 <div class="mt_50 bg-img-content">
                     <h3>And the two shall become one flesh. So they are no longer two but one flesh. - Mark 10:8</h3>
@@ -44,12 +44,12 @@
 
                     <!-- Form -->
                     <div class="item-center">
-                        <form id="otpVerificationForm" class="col-md-5 col-md-5 col-lg-5 form-section">
+                        <form id="otpVerificationForm" class="col-12 col-md-5 col-lg-5 form-section">
                             <h5>Please select your preferred <br> means of verification.. </h5>
                             <div class="col-12">
                                 <div class="form-field mb-3">
                                     <label for="primaryMobNum-otp">Primary Mobile Number 
-                                        <button id="edit-PrimaryNum" class="edit-btn">Edit</button></label>
+                                        <button id="edit-PrimaryNum" class="edit-btn d-none">Edit</button></label>
                                     <div class="opt-field">
                                         <div class="fieldWithBtn">
                                             <input type="tel" name="primaryMobNum-otp" id="primaryMobNum-otp" class="enter-otp" placeholder="Enter primary OTP" disabled="disabled" maxlength="4">
@@ -72,7 +72,9 @@
                             </div>
                             <div class="col-12">
                                 <div  class="form-field mb-3">
-                                    <label for="whatsappNum-otp">Whatsapp Number<button id="edit-whatsappNum" class="edit-btn">Edit</button></label>
+                                    <label for="whatsappNum-otp">Whatsapp Number
+                                        <button id="edit-whatsappNum" class="edit-btn d-none">Edit</button>
+                                    </label>
                                     <div class="opt-field">
                                         <div class="fieldWithBtn">
                                             <input type="tel" name="whatsappNum-otp" id="whatsappNum-otp" class="enter-otp" placeholder="Enter whatsapp OTP" disabled="disabled" maxlength="4">
@@ -94,7 +96,9 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-field mb-3">
-                                    <label for="email-otp">Email ID : <button id="edit-email" class="edit-btn">Edit</button></label>
+                                    <label for="email-otp">Email ID : 
+                                        <button id="edit-email" class="edit-btn d-none">Edit</button>
+                                    </label>
                                     <div class="opt-field">
                                         <div class="fieldWithBtn">
                                             <input type="text" name="email-otp" id="email-otp" class="enter-otp" placeholder="Enter email OTP" disabled="disabled" maxlength="4">
@@ -150,9 +154,6 @@
         </div>
     </div>
     <!-- Popup -->
-
-
-
 
     <!-- plugin Files -->
     <script src="./assets/js/jquery-3.7.1.min.js"></script>

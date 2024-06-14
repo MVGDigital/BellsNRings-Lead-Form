@@ -1,0 +1,8 @@
+{
+    "require": {
+        "twilio/sdk": "^8.1",
+        "sendgrid/sendgrid": "^8.1",
+        "aws/aws-sdk-php": "^3.314",
+        "phpmailer/phpmailer": "^6.9"
+    }
+}

@@ -50,8 +50,9 @@
                             </div>
                             <h4>Successful!</h4>
                             <p>Congratulations! Your ID has been successfully created.</p>
-                            <p>ID Number : <b class="">BNR0001</b></p>
+                            <p>ID Number : <b class="highlightText">BNR0001</b></p>
                             <p>Thank you for choosing bells n rings. If you have any questions or need further assistance, feel free to contact our support team at +1 (555) 123-4567.. </p>
+                            <div id="timer" class="highlightText">Redirecting in <b id="countdown">5</b> seconds...</div>
                             <div class="col-12 text-center  mt_30 mb_40">
                                 <a href="https://mvgdigital.com/bellsnrings/detail_form.html"><button type="button" id="nav-to-detailForm" class="submit_btn">Continue</button></a>
                             </div>
@@ -74,7 +75,18 @@
 
     <!--  -->
     <script>
-    
+    $("#nav-to-detailForm").click(function(){
+        window.location.href = "https://mvgdigital.com/bellsnrings/detail_form.html";
+    });
+    var countdown = 5; // countdown in seconds
+    var countdownTimer = setInterval(function() {
+        countdown--;
+        $("#countdown").text(countdown);
+        if (countdown <= 0) {
+            clearInterval(countdownTimer);
+            window.location.href = "https://mvgdigital.com/bellsnrings/detail_form.html"; // Change to your desired page
+        }
+    }, 1000);
     </script>
     <!--  -->
     

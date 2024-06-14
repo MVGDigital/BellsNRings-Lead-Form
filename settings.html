@@ -26,7 +26,9 @@
                     <a class="navbar-brand"><img src="./assets/img/bnr-logo.png" alt=""></a>
                   </div>
                 </div>
-                <i id="menu-btn" class="fa fa-bars" aria-hidden="true"></i>
+                <i id="menu-btn" class="fa fa-bars" aria-hidden="true">
+                  <span id="menu_title">Menu</span>
+              </i>
                 <ul class="nav_list">
                   <li>
                     <a href="dashboard.html">
@@ -100,7 +102,7 @@
                 <div class="dash_content">
                     <h1 id="qr-title">Settings</h1>
 
-                    <div class="col-lg-4 m-auto">
+                    <div class="col-12 col-md-6 col-lg-4 m-auto">
                         <div class="mt_50">
                             <!-- Form -->
                             <form id="generatePassword" class="form-section">
@@ -119,7 +121,7 @@
                                     <div class="form-field">
                                         <label for="new_password">New Password <span class="requirdField" >*</span></label>
                                         <div class="password-field">
-                                            <input type="password" id="new_password" name="new_password" placeholder="new password">
+                                            <input type="password" id="new_password" name="new_password" placeholder="New password">
                                             <span toggle="#new_password" class="eye-icon toggle-password">
                                                 <i class="fa fa-eye-slash" aria-hidden="true"></i>
                                             </span>
@@ -130,7 +132,7 @@
                                     <div class="form-field">
                                         <label for="confirm_password">New Password <span class="requirdField" >*</span></label>
                                         <div class="password-field">
-                                            <input type="password" id="confirm_password" name="confirm_password" placeholder="confirm password">
+                                            <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm password">
                                             <span toggle="#confirm_password" class="eye-icon toggle-password">
                                                 <i class="fa fa-eye-slash" aria-hidden="true"></i>
                                             </span>
